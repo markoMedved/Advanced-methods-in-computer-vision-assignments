@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.3.6)  7 MAR 2025 08:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.3.6)  7 MAR 2025 20:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1082,44 +1082,145 @@ Package gensymb Info: Using text companion symbols for \degree, \celsius and \pe
 LaTeX Info: Redefining \ohm on input line 45.
 Package gensymb Info: Using \textohm for \ohm on input line 45.
 Package gensymb Info: Using \textmu for \micro on input line 45.
-<figure.png, id=18, 375.65344pt x 362.10281pt>
-File: figure.png Graphic file (type png)
-<use figure.png>
-Package pdftex.def Info: figure.png  used on input line 75.
-(pdftex.def)             Requested size: 252.0pt x 242.91702pt.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 60.
+ (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 60.
+ (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 60.
+ (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 60.
+ (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 60.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 60.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 60.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 60.
+ (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 60.
+ (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 60.
+ (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+<figures/noise.png, id=40, 939.51pt x 578.16pt>
+File: figures/noise.png Graphic file (type png)
+<use figures/noise.png>
+Package pdftex.def Info: figures/noise.png  used on input line 74.
+(pdftex.def)             Requested size: 201.60077pt x 124.05496pt.
+<figures/images_base.png, id=43, 939.51pt x 1156.32pt>
+File: figures/images_base.png Graphic file (type png)
+<use figures/images_base.png>
+Package pdftex.def Info: figures/images_base.png  used on input line 95.
+(pdftex.def)             Requested size: 252.0pt x 310.14622pt.
+<figures/harris_addition.png, id=45, 939.51pt x 578.16pt>
+File: figures/harris_addition.png Graphic file (type png)
+<use figures/harris_addition.png>
+Package pdftex.def Info: figures/harris_addition.png  used on input line 112.
+(pdftex.def)             Requested size: 252.0pt x 155.0731pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-No file main.bbl.
 [1{C:/Users/marko/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}
 
 
-
+{C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.88 \end{document}
-                    <./figure.png (PNG copy)>] (main.aux)
+l.125 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.125 
+       <./figures/noise.png> <./figures/images_base.png>]
+<figures/LK_params.png, id=70, 1228.59pt x 578.16pt>
+File: figures/LK_params.png Graphic file (type png)
+<use figures/LK_params.png>
+Package pdftex.def Info: figures/LK_params.png  used on input line 129.
+(pdftex.def)             Requested size: 252.0pt x 118.58531pt.
+<figures/HS_params.png, id=72, 1373.13pt x 578.16pt>
+File: figures/HS_params.png Graphic file (type png)
+<use figures/HS_params.png>
+Package pdftex.def Info: figures/HS_params.png  used on input line 145.
+(pdftex.def)             Requested size: 252.0pt x 106.10219pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 161.
+
+Overfull \hbox (1.72984pt too wide) in paragraph at lines 161--168
+ [][] 
+ []
+
+<figures/Pyramidal.png, id=76, 1228.59pt x 578.16pt>
+File: figures/Pyramidal.png Graphic file (type png)
+<use figures/Pyramidal.png>
+Package pdftex.def Info: figures/Pyramidal.png  used on input line 182.
+(pdftex.def)             Requested size: 252.0pt x 118.58531pt.
+No file main.bbl.
+[2
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.197 \end{document}
+                    
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.197 \end{document}
+                    
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.197 \end{document}
+                    
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.197 \end{document}
+                    
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.197 \end{document}
+                     <./figures/harris_addition.png> <./figures/LK_params.png> <./figures/HS_params.png> <./figures/Pyramidal.png>] (main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 9B7974A5C2C29C70BF37AF7E37A1A505;294.
+(rerunfilecheck)             Checksum: BB8350DEAE8D1CA878BE633A11A78829;1430.
  ) 
 Here is how much of TeX's memory you used:
- 14748 strings out of 474486
- 235191 string characters out of 5743756
- 1935542 words of memory out of 5000000
- 36800 multiletter control sequences out of 15000+600000
- 712218 words of font info for 110 fonts, out of 8000000 for 9000
+ 14978 strings out of 474486
+ 240385 string characters out of 5743756
+ 1944542 words of memory out of 5000000
+ 36968 multiletter control sequences out of 15000+600000
+ 735734 words of font info for 137 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 63i,6n,67p,648b,458s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri9.pfb>
-Output written on main.pdf (1 page, 496766 bytes).
+ 63i,11n,67p,648b,461s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi9.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri9.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy9.pfb>
+Output written on main.pdf (2 pages, 4443336 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
- 6 named destinations out of 1000 (max. 500000)
- 30 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 160 PDF objects out of 1000 (max. 8388607)
+ 19 named destinations out of 1000 (max. 500000)
+ 103 words of extra memory for PDF output out of 10000 (max. 10000000)
 
