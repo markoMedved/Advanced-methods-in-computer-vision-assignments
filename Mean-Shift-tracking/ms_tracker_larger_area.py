@@ -6,31 +6,31 @@ import seaborn as sns
 
 class MeanShiftTracker(Tracker):
     def initialize(self, image, region):
-        # To get the boundign box with the correct shape in the end
-        self.region_shape = (region[2], region[3])
-        #TODO change to params
-        self.kernel_size = self.parameters.patch_size
+
+        self.kernel_size = int(np.mean([region[2], region[3]]))
 
         if self.kernel_size % 2 == 0:
             self.kernel_size += 1
-        #print( self.kernel_size * self.parameters.sigma)
-        self.kernel = create_epanechnik_kernel(self.kernel_size , self.kernel_size, self.parameters.sigma)
-        #print(self.kernel[20:30, 20:30])
+        self.kernel = create_epanechnik_kernel(self.kernel_size , self.kernel_size, self.kernel_size//self.parameters.sigma)
+        # Pad the kernel 
+        tmp = int(round(self.kernel_size/self.parameters.template_to_kernel))
+        self.kernel = np.pad(self.kernel, pad_width=((tmp, tmp),
+                                                     (tmp, tmp)))
 
         self.position = (round(region[0] + self.kernel_size / 2.0), round(region[1] + self.kernel_size / 2.0))
         # Extract the template
-        tmp = int(max([region[2], region[3]]))
-        template, _ = get_patch(image, self.position, (tmp, tmp))
-        template = cv2.resize(template, self.kernel.shape)
-        
+
+        template, _ = get_patch(image, self.position, (self.kernel_size * self.parameters.template_to_kernel +1,
+                                                        self.kernel_size * self.parameters.template_to_kernel + 1))
+
 
         self.hist_template = extract_histogram(template, self.parameters.nbins, self.kernel)
         self.hist_template = self.hist_template / np.sum(self.hist_template)
 
     def track(self, image):
-        kernel_half = self.kernel_size // 2
+        kernel_half = self.kernel.shape[0]// 2
         x_diff_mtx = np.arange(-kernel_half, kernel_half+1)
-        x_diff_mtx = np.tile(x_diff_mtx, (self.kernel_size, 1))
+        x_diff_mtx = np.tile(x_diff_mtx, (self.kernel.shape[0], 1))
         y_diff_mtx = x_diff_mtx.T
 
         x,y = self.position
@@ -41,7 +41,8 @@ class MeanShiftTracker(Tracker):
         
         for i in range(self.parameters.n_iter):
             # Get the current patch
-            current_patch, _ =  get_patch(image, self.position, self.kernel.shape)
+            current_patch, _ =  get_patch(image, self.position, (self.kernel_size * self.parameters.template_to_kernel +1,
+                                                        self.kernel_size * self.parameters.template_to_kernel + 1))
             current_hist = extract_histogram(current_patch, self.parameters.nbins, self.kernel)
             current_hist = current_hist / np.sum(current_hist)
 
@@ -64,16 +65,16 @@ class MeanShiftTracker(Tracker):
             # break if the trend is downward
             # x_new_backproj = kernel_half + round(x_new - x)
             # y_new_backproj = kernel_half + round(y_new -y)
-            if image_backprojected[y_backprj,x_backproj] > image_backprojected[int(round(y_new_backproj)), int(round(x_new_backproj))]:
-                #print(f"Lower probs at {i}")
+            if image_backprojected[x_backproj,y_backprj] > image_backprojected[int(round(y_new_backproj)), int(round(x_new_backproj))]:
+                print(f"Lower probs at {i}")
                 break
     
             if (np.abs(x_backproj - x_new_backproj) < 0.5) and (np.abs(y - y_new_backproj) < 0.5):
-                #print(f"Less than 1 pixel step at {i}")
+                print(f"Less than 1 pixel step at {i}")
                 break
 
             if (x_backproj - x_new_backproj)**2 + (y_backprj - y_new_backproj)**2 < self.parameters.minstep:
-                #print(f"less than {self.parameters.minstep} step at {i}")
+                print(f"less than {self.parameters.minstep} step at {i}")
                 break
 
             # x = round(x_new)
@@ -91,12 +92,11 @@ class MeanShiftTracker(Tracker):
         return [self.position[0] - self.kernel_size//2,self.position[1] - self.kernel_size//2,self.kernel_size, self.kernel_size]
 
 class MSParams():
-    def __init__(self, nbins = 16,sigma = 1, eps = 1e-7,
-                  alpha = 0.0, n_iter = 20, minstep=5, patch_size=50):
+    def __init__(self, nbins = 16,sigma = 2, eps = 1e-7, alpha = 0.01, n_iter = 20, minstep=1, template_to_kernel = 1.5):
         self.nbins = nbins
         self.eps = eps
         self.alpha = alpha
         self.sigma = sigma
         self.n_iter = n_iter    
         self.minstep = minstep
-        self.patch_size = patch_size
+        self.template_to_kernel = template_to_kernel
