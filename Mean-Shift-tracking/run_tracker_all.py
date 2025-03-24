@@ -14,7 +14,6 @@ print(filenames)
 filenames.remove("list.txt")
 
 total_errors = 0
-
 for sequence in filenames:
     # visualization and setup parameters
     win_name = 'Tracking window'

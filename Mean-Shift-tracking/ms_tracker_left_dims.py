@@ -4,44 +4,50 @@ from ex2_utils import generate_responses_1, extract_histogram, backproject_histo
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 class MeanShiftTracker(Tracker):
     def initialize(self, image, region):
         # To get the boundign box with the correct shape in the end
+        print(region)
         self.region_shape = (region[2], region[3])
-        #TODO change to params
-        self.kernel_size = self.parameters.patch_size
 
-        if self.kernel_size % 2 == 0:
-            self.kernel_size += 1
-        #print( self.kernel_size * self.parameters.sigma)
-        self.kernel = create_epanechnik_kernel(self.kernel_size , self.kernel_size, self.parameters.sigma)
-        #print(self.kernel[20:30, 20:30])
+        # self.kernel_size = int(np.mean([region[2], region[3]]))
 
-        self.position = (round(region[0] + self.kernel_size / 2.0), round(region[1] + self.kernel_size / 2.0))
+        # if self.kernel_size % 2 == 0:
+        #     self.kernel_size += 1
+
+        self.kernel = create_epanechnik_kernel(region[2] , region[3], max([region[2], region[3]]) * self.parameters.sigma)
+        print(self.kernel.shape)
+        self.position = (round(region[0] + region[2] / 2.0), round(region[1] + region[2] / 2.0))
         # Extract the template
-        tmp = int(np.mean([region[2], region[3]]))
-        template, _ = get_patch(image, self.position, (tmp, tmp))
-        template = cv2.resize(template, self.kernel.shape)
-        
+        template, _ = get_patch(image, self.position, self.kernel.shape)
 
         self.hist_template = extract_histogram(template, self.parameters.nbins, self.kernel)
         self.hist_template = self.hist_template / np.sum(self.hist_template)
 
     def track(self, image):
-        kernel_half = self.kernel_size // 2
-        x_diff_mtx = np.arange(-kernel_half, kernel_half+1)
-        x_diff_mtx = np.tile(x_diff_mtx, (self.kernel_size, 1))
-        y_diff_mtx = x_diff_mtx.T
+
+        x_diff_mtx = np.arange(-(self.kernel.shape[1]//2), self.kernel.shape[1]//2 + 1)
+        x_diff_mtx = np.tile(x_diff_mtx, (self.kernel.shape[0], 1))
+
+        y_diff_mtx = np.arange(-(self.kernel.shape[0]//2), self.kernel.shape[0]//2+1)
+        y_diff_mtx = np.tile(y_diff_mtx, (self.kernel.shape[1], 1)).T
+
 
         x,y = self.position
 
         # position of x,y inside backproj image
-        x_backproj = kernel_half
-        y_backprj = kernel_half
-        
+        x_backproj = self.kernel.shape[1]//2
+        y_backprj = self.kernel.shape[0]//2
+
+
         for i in range(self.parameters.n_iter):
             # Get the current patch
             current_patch, _ =  get_patch(image, self.position, self.kernel.shape)
+            current_patch = current_patch
+
             current_hist = extract_histogram(current_patch, self.parameters.nbins, self.kernel)
             current_hist = current_hist / np.sum(current_hist)
 
@@ -50,11 +56,13 @@ class MeanShiftTracker(Tracker):
             weights = weights / np.sum(weights)
             # Backproject the image
             image_backprojected = backproject_histogram(current_patch, weights, self.parameters.nbins)
+            image_backprojected = image_backprojected.T
+
             if np.sum(image_backprojected) < self.parameters.eps:
                 break
             
             x_i_mtx = (x_backproj * np.ones_like(x_diff_mtx) + x_diff_mtx)
-            y_i_mtx = (y_backprj * np.ones_like(x_diff_mtx) + y_diff_mtx)
+            y_i_mtx = (y_backprj * np.ones_like(y_diff_mtx) + y_diff_mtx)
 
             # x_new = np.sum(x_i_mtx * image_backprojected) / (np.sum(image_backprojected) + self.parameters.eps)
             # y_new = np.sum(y_i_mtx * image_backprojected) / (np.sum(image_backprojected) + self.parameters.eps)
@@ -86,17 +94,14 @@ class MeanShiftTracker(Tracker):
         #print(i)
         # Update the template histogram
         self.hist_template = (1-self.parameters.alpha) * self.hist_template + self.parameters.alpha * current_hist
-        
-        # TODO is the size now correct (is it 50 50?)
-        return [self.position[0] - self.kernel_size//2,self.position[1] - self.kernel_size//2,self.region_shape[0], self.region_shape[1]]
+
+        return [self.position[1] - self.kernel.shape[0]//2,self.position[0] - self.kernel.shape[0]//2,self.kernel.shape[1], self.kernel.shape[0]]
 
 class MSParams():
-    def __init__(self, nbins = 16,sigma = 1, eps = 1e-7,
-                  alpha = 0.0, n_iter = 50, minstep=5, patch_size=50):
+    def __init__(self, nbins = 16,sigma = 0.05, eps = 1e-7, alpha = 0.0, n_iter = 10, minstep=5):
         self.nbins = nbins
         self.eps = eps
         self.alpha = alpha
         self.sigma = sigma
         self.n_iter = n_iter    
         self.minstep = minstep
-        self.patch_size = patch_size

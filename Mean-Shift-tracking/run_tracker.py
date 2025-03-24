@@ -4,12 +4,12 @@ import cv2
 
 from sequence_utils import VOTSequence
 #from ncc_tracker_example import NCCTracker, NCCParams
-from ms_tracker_prev import MeanShiftTracker, MSParams
+from ms_tracker import MeanShiftTracker, MSParams
 
 
 # set the path to directory where you have the sequences
 dataset_path = 'C:\\Users\\marko\\Desktop\\Computer_vision\\Advanced-methods-in-computer-vision-assignments\\Mean-Shift-tracking\\vot2014' # TODO: set to the dataet path on your disk
-sequence ='ball'  # choose the sequence you want to test
+sequence ='sphere'  # choose the sequence you want to test
 
 # visualization and setup parameters
 win_name = 'Tracking window'
@@ -21,6 +21,7 @@ font = cv2.FONT_HERSHEY_PLAIN
 # create sequence object
 sequence = VOTSequence(dataset_path, sequence)
 init_frame = 0
+
 n_failures = 0
 # create parameters and tracker objects
 # parameters = NCCParams()
