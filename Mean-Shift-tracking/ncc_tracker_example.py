@@ -7,7 +7,6 @@ from ex2_utils import Tracker
 class NCCTracker(Tracker):
 
     def initialize(self, image, region):
-        print(region)
         if len(region) == 8:
             x_ = np.array(region[::2])
             y_ = np.array(region[1::2])
