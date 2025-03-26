@@ -25,8 +25,9 @@ class MeanShiftTracker(Tracker):
         """Initialized the tracker with the provided bounding box for the first frame"""
         # Convert image to the target color space
         if self.parameters.color_space in ["cv2.COLOR_BGR2RGB", "cv2.COLOR_BGR2LAB", 
-                                           "cv2.COLOR_BGR2HSV", "cv2.COLOR_BGR2HSVYCrCb"]:
+                                           "cv2.COLOR_BGR2HSV", "cv2.COLOR_BGR2YCrCb"]:
             image = cv2.cvtColor(image, eval(self.parameters.color_space))
+
         if len(region) == 8:
             x_ = np.array(region[::2])
             y_ = np.array(region[1::2])
@@ -55,6 +56,9 @@ class MeanShiftTracker(Tracker):
 
     def track(self, image):
         """"Tracks the object on the current frame"""
+        if self.parameters.color_space in ["cv2.COLOR_BGR2RGB", "cv2.COLOR_BGR2LAB", 
+                                           "cv2.COLOR_BGR2HSV", "cv2.COLOR_BGR2YCrCb"]:
+            image = cv2.cvtColor(image, eval(self.parameters.color_space))
         x,y = self.position
         # Calculate the difference matrices around the center, for mean shift
         x_diff_mtx = np.arange(-(self.kernel.shape[1]//2), self.kernel.shape[1]//2 + 1)
@@ -102,8 +106,8 @@ class MeanShiftTracker(Tracker):
 
 
 class MSParams():
-    def __init__(self, nbins = 16, sigma = 2, n_iters = 10, 
-                 alpha = 0.0,background_size_ratio = 3, color_space = ""):
+    def __init__(self, nbins = 16, sigma = 1, n_iters = 20, 
+                 alpha = 0.0,background_size_ratio = 5, color_space = "HSV"):
         self.nbins = nbins
         self.sigma = sigma
         self.n_iters = n_iters

@@ -9,12 +9,13 @@ from ms_tracker import MeanShiftTracker, MSParams
 
 # set the path to directory where you have the sequences
 dataset_path = 'C:\\Users\\marko\\Desktop\\Computer_vision\\Advanced-methods-in-computer-vision-assignments\\Mean-Shift-tracking\\vot2014' # TODO: set to the dataet path on your disk
-sequence ='ball'  # choose the sequence you want to test
+sequence ='tunnel'  # choose the sequence you want to test
+name = sequence
 
 # visualization and setup parameters
 win_name = 'Tracking window'
 reinitialize = True
-show_gt = False
+show_gt = True
 video_delay = 15
 font = cv2.FONT_HERSHEY_PLAIN
 
@@ -71,6 +72,9 @@ while frame_idx < sequence.length():
         frame_idx += 5
         init_frame = frame_idx
         n_failures += 1
+        save_path = f"report/figures/{name}_failure{n_failures}.png"
+        # cv2.imwrite(save_path,img)
+        # cv2.waitKey(0)
 
 print('Tracking speed: %.1f FPS' % (sequence.length() / time_all))
 print('Tracker failed %d times' % n_failures)

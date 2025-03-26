@@ -10,11 +10,11 @@ from ms_tracker import MeanShiftTracker, MSParams
 # set the path to directory where you have the sequences
 dataset_path = 'C:\\Users\\marko\\Desktop\\Computer_vision\\Advanced-methods-in-computer-vision-assignments\\Mean-Shift-tracking\\vot2014' # TODO: set to the dataet path on your disk
 filenames = os.listdir(dataset_path)
-print(filenames)
 filenames.remove("list.txt")
 
 total_errors = 0
 for sequence in filenames:
+    print(sequence)
     # visualization and setup parameters
     win_name = 'Tracking window'
     reinitialize = True
@@ -35,7 +35,7 @@ for sequence in filenames:
     time_all = 0
 
     # initialize visualization window
-    sequence.initialize_window(win_name)
+    #sequence.initialize_window(win_name)
     # tracking loop - goes over all frames in the video sequence
     frame_idx = 0
     while frame_idx < sequence.length():
@@ -59,12 +59,12 @@ for sequence in filenames:
         o = sequence.overlap(predicted_bbox, gt_bb)
 
         # draw ground-truth and predicted bounding boxes, frame numbers and show image
-        if show_gt:
-            sequence.draw_region(img, gt_bb, (0, 255, 0), 1)
-        sequence.draw_region(img, predicted_bbox, (0, 0, 255), 2)
-        sequence.draw_text(img, '%d/%d' % (frame_idx + 1, sequence.length()), (25, 25))
-        sequence.draw_text(img, 'Fails: %d' % n_failures, (25, 55))
-        sequence.show_image(img, video_delay)
+        # if show_gt:
+        #     sequence.draw_region(img, gt_bb, (0, 255, 0), 1)
+        # sequence.draw_region(img, predicted_bbox, (0, 0, 255), 2)
+        # sequence.draw_text(img, '%d/%d' % (frame_idx + 1, sequence.length()), (25, 25))
+        # sequence.draw_text(img, 'Fails: %d' % n_failures, (25, 55))
+        # sequence.show_image(img, video_delay)
 
         if o > 0 or not reinitialize:
             # increase frame counter by 1

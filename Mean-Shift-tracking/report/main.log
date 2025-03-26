@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.3.6)  25 MAR 2025 21:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.3.6)  26 MAR 2025 22:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1082,16 +1082,58 @@ Package gensymb Info: Using text companion symbols for \degree, \celsius and \pe
 LaTeX Info: Redefining \ohm on input line 45.
 Package gensymb Info: Using \textohm for \ohm on input line 45.
 Package gensymb Info: Using \textmu for \micro on input line 45.
-<figures/mode_seeking.png, id=20, 1084.05pt x 794.97pt>
+<figures/mode_seeking.png, id=40, 1084.05pt x 939.51pt>
 File: figures/mode_seeking.png Graphic file (type png)
 <use figures/mode_seeking.png>
-Package pdftex.def Info: figures/mode_seeking.png  used on input line 93.
-(pdftex.def)             Requested size: 249.48138pt x 182.94843pt.
+Package pdftex.def Info: figures/mode_seeking.png  used on input line 91.
+(pdftex.def)             Requested size: 249.48138pt x 216.21178pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-No file main.bbl.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 107.
+(C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+<figures/mode_seeking2.png, id=43, 1300.86pt x 361.35pt>
+File: figures/mode_seeking2.png Graphic file (type png)
+<use figures/mode_seeking2.png>
+Package pdftex.def Info: figures/mode_seeking2.png  used on input line 113.
+(pdftex.def)             Requested size: 249.48138pt x 69.2968pt.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 130.
+ (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 130.
+ (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 130.
+ (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 130.
+ (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 130.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 130.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 130.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 130.
+ (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 130.
+ (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Overfull \hbox (7.14769pt too wide) in paragraph at lines 130--150
+ [][] 
+ []
+
 [1{C:/Users/marko/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}
 
 
@@ -1099,27 +1141,77 @@ No file main.bbl.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.103 \end{document}
-                     <./figures/mode_seeking.png>] (main.aux)
+l.160 
+      {C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.160 
+       <./figures/mode_seeking.png> <./figures/mode_seeking2.png>]
+<figures/failures.png, id=65, 1084.05pt x 794.97pt>
+File: figures/failures.png Graphic file (type png)
+<use figures/failures.png>
+Package pdftex.def Info: figures/failures.png  used on input line 170.
+(pdftex.def)             Requested size: 249.48138pt x 182.94843pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 176.
+<figures/nbins_niters.png, id=67, 722.7pt x 433.62pt>
+File: figures/nbins_niters.png Graphic file (type png)
+<use figures/nbins_niters.png>
+Package pdftex.def Info: figures/nbins_niters.png  used on input line 199.
+(pdftex.def)             Requested size: 249.48138pt x 149.68507pt.
+<figures/sigma_alpha.png, id=69, 578.16pt x 433.62pt>
+File: figures/sigma_alpha.png Graphic file (type png)
+<use figures/sigma_alpha.png>
+Package pdftex.def Info: figures/sigma_alpha.png  used on input line 215.
+(pdftex.def)             Requested size: 249.48138pt x 187.108pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+No file main.bbl.
+[2
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.236 \end{document}
+                    
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.236 \end{document}
+                    {C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.236 \end{document}
+                    {C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc} <./figures/failures.png> <./figures/nbins_niters.png>] [3
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.236 \end{document}
+                    
+
+ <./figures/sigma_alpha.png>] (main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 5E143A86D3168868910B201D7E834BF3;784.
+(rerunfilecheck)             Checksum: 66322AA004C1FE8A3EA7787BAB22B823;1870.
  ) 
 Here is how much of TeX's memory you used:
- 14750 strings out of 474486
- 235392 string characters out of 5743756
- 1939542 words of memory out of 5000000
- 36801 multiletter control sequences out of 15000+600000
- 712218 words of font info for 110 fonts, out of 8000000 for 9000
+ 14966 strings out of 474486
+ 240227 string characters out of 5743756
+ 1954542 words of memory out of 5000000
+ 36958 multiletter control sequences out of 15000+600000
+ 732746 words of font info for 136 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 63i,6n,67p,655b,456s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri9.pfb>
-Output written on main.pdf (1 page, 309468 bytes).
+ 63i,9n,67p,655b,460s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi9.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri9.pfb>
+Output written on main.pdf (3 pages, 2835893 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
- 7 named destinations out of 1000 (max. 500000)
- 38 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 138 PDF objects out of 1000 (max. 8388607)
+ 19 named destinations out of 1000 (max. 500000)
+ 98 words of extra memory for PDF output out of 10000 (max. 10000000)
 
