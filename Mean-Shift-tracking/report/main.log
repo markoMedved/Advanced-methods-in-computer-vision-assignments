@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.3.6)  27 MAR 2025 14:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.3.6)  28 MAR 2025 00:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1159,12 +1159,12 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 <figures/nbins_niters.png, id=68, 578.16pt x 361.35pt>
 File: figures/nbins_niters.png Graphic file (type png)
 <use figures/nbins_niters.png>
-Package pdftex.def Info: figures/nbins_niters.png  used on input line 176.
-(pdftex.def)             Requested size: 201.60077pt x 126.00021pt.
+Package pdftex.def Info: figures/nbins_niters.png  used on input line 177.
+(pdftex.def)             Requested size: 239.39923pt x 149.62111pt.
 <figures/sigma_alpha.png, id=70, 578.16pt x 361.35pt>
 File: figures/sigma_alpha.png Graphic file (type png)
 <use figures/sigma_alpha.png>
-Package pdftex.def Info: figures/sigma_alpha.png  used on input line 191.
+Package pdftex.def Info: figures/sigma_alpha.png  used on input line 190.
 (pdftex.def)             Requested size: 249.48138pt x 155.92332pt.
 
 No file main.bbl.
@@ -1172,22 +1172,22 @@ No file main.bbl.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.239 \end{document}
+l.237 \end{document}
                     {C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.239 \end{document}
-                    {C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}
+l.237 \end{document}
+                    
 pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.239 \end{document}
+l.237 \end{document}
                     
 pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.239 \end{document}
+l.237 \end{document}
                      <./figures/failures.png> <./figures/nbins_niters.png> <./figures/sigma_alpha.png>] (main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
@@ -1197,17 +1197,17 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 66322AA004C1FE8A3EA7787BAB22B823;1870.
  ) 
 Here is how much of TeX's memory you used:
- 14967 strings out of 474486
- 240254 string characters out of 5743756
+ 14966 strings out of 474486
+ 240245 string characters out of 5743756
  1959542 words of memory out of 5000000
  36959 multiletter control sequences out of 15000+600000
  732746 words of font info for 136 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  63i,9n,67p,655b,458s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi9.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri9.pfb>
-Output written on main.pdf (2 pages, 2827372 bytes).
+Output written on main.pdf (2 pages, 2844506 bytes).
 PDF statistics:
- 136 PDF objects out of 1000 (max. 8388607)
+ 132 PDF objects out of 1000 (max. 8388607)
  19 named destinations out of 1000 (max. 500000)
  98 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -9,7 +9,7 @@ from ms_tracker import MeanShiftTracker, MSParams
 
 # set the path to directory where you have the sequences
 dataset_path = 'C:\\Users\\marko\\Desktop\\Computer_vision\\Advanced-methods-in-computer-vision-assignments\\Mean-Shift-tracking\\vot2014' # TODO: set to the dataet path on your disk
-sequence ='basketball'  # choose the sequence you want to test
+sequence ='bolt'  # choose the sequence you want to test
 name = sequence
 
 # visualization and setup parameters

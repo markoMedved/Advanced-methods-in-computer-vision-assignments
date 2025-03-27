@@ -137,7 +137,7 @@ The number of failures and the tracking speed (measured on my personal laptop)
   \subsection{Failure cases discussion}
   Figure~\ref{fig:failures} shows the cases where the tracker experienced the most failures.
    In the fish1 and hand2 sequences, failures occurred due to similar color distributions 
-   between the tracked and ground truth bounding boxes, making it hard to detect movement.
+   between the tracked object and the background, making it hard to detect movement.
     In the torus and tunnel sequences, scale changes added complexity: in torus, object 
     rotation altered the color distribution, and in tunnel, the motorbike’s decreasing size 
     led to an inaccurate bounding box.
@@ -156,36 +156,35 @@ The number of failures and the tracking speed (measured on my personal laptop)
 \subsection{Parameter tuning}
 Four key parameters were tested: $\sigma$ (kernel size), histogram bin count, 
 iterations per frame, and $\alpha$ (template update rate). The algorithm was 
-evaluated for all combinations of 4 bin counts, 4 kernel sizes, 3 iteration values,
- and 4 update rates.
+evaluated for all combinations of 4 bin counts, 5 kernel sizes, 3 iteration values,
+ and 6 update rates.
 
-To determine the optimal number of iterations and bins, results were aggregated based 
-on these parameters (Figure~\ref{fig:params1}). The data shows that using only one
- iteration significantly reduces performance, while 10 and 20 iterations yield similar 
- results, with average FPS of 1482 and 1484, respectively. This indicates negligible impact
-  on speed with either 10 or 20 iterations.
+ To determine the optimal number of iterations and bins, the results were averaged with respect to 
+  these two parameters (Figure~\ref{fig:params1}). The data shows that using only one iteration 
+  significantly reduces performance, while 10 and 20 iterations produce similar results. Since
+   the average performance is very similar between 10 and 20 iterations, the 20-iteration version
+    will be used for further evaluation, as it produced the top 3 best single results, including 
+    the best result with 25 failures across the entire dataset.
 
-Regarding the number of bins, 8 or 16 bins deliver the best performance. While 8 bins 
-slightly underperform compared to 16, they offer a notable increase in FPS. On a personal 
-laptop, 16 bins reached an average FPS of 2151, making it the preferred choice unless
- running on a device with limited computational power. 
-Based on that 20 iterations and 16 bins were used for further evaluation.
+    Regarding the number of bins, 8 and 16 bins outperform the others and 
+     deliver a really similar performance. 
+    However, since the top 7 single results were produced by the 16-bin version, this version will
+     be used for further evaluation.
+
 
  \begin{figure}[h]
   \centering
-  \includegraphics[width=0.8\columnwidth]{figures/nbins_niters.png}
+  \includegraphics[width=0.95\columnwidth]{figures/nbins_niters.png}
   \caption{Performance of the means shift tracker with different numbers of bins and numbers of
   iterations}
   \label{fig:params1}
 \end{figure}
 
-To determine the best values for $\sigma$ and $\alpha$, we refer 
-to Figure~\ref{fig:params2}. Since FPS remains consistent across parameter values,
- the focus is on minimizing failures. The optimal $\sigma$ is clear (with $\sigma = 1$ we can reach as low as 29 failures),
-  but the choice 
- of $\alpha$ depends on the problem. For targets whose appearance changes frequently, $\alpha = 0.01$ 
- is preferred, while for stable targets, $\alpha = 0$ is more suitable.
-
+To determine the best values for $\sigma$ and $\alpha$, we refer to Figure~\ref{fig:params2}. 
+The optimal $\sigma$ could be 0.5 or 1, but we choose 1 since it produced the top 2 single
+ results. For $\alpha$, performance is similar across the range from 0 to 0.01, but 0.001 appears
+  to slightly outperform the others. We can interpret that, while updating the template can help, 
+  it should be performed really slowly.
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.99\columnwidth]{figures/sigma_alpha.png}
@@ -197,14 +196,13 @@ to Figure~\ref{fig:params2}. Since FPS remains consistent across parameter value
 \subsection{Feature selection by accounting for the background in different color spaces}
 To mitigate the influence of the background, the method applied smaller weights to the regions in the histogram where
  the background color predominated. The tracker was also evaluated using five different color spaces. Additionally,
-  a new parameter was introduced: the size of the background area. Since the optimal value for $\alpha$ was not definitive
-   in the previous evaluation, two promising values ($\alpha = 0$ and $\alpha = 0.01$) were considered in this experiment.
-
-The results showed that the optimal parameters are $\alpha = 0$ and a background size twice the size of the template. 
-The template region itself was excluded when computing the background contribution.
+  a new parameter was introduced: the size of the background area. In the results, the optimal size of the background area 
+  for each color space will be taken for evaluation.
 
 Table~\ref{tab:color_spaces_results} presents the number of failures across the entire dataset for each color 
-space using these optimized parameters, showing a clear improvement over the baseline method. Note that,
+space using the optimal parameters, showing an improvement over the basic 
+method(except for the YCrCb color space) . Note that by using the HSV color 
+space, which performed best on the entire dataset,
  the performance
  on the most challenging videos (hand2, fish1, torus, and tunnel) improved, with the number of failures
   reduced to 4, 1, 0, and 3, respectively. 
@@ -216,11 +214,11 @@ space using these optimized parameters, showing a clear improvement over the bas
     \hline
     \textbf{Color space} & \textbf{Failures} & \textbf{Average Speed [FPS]} \\ 
     \hline
-    RGB                 & 23                & 981                  \\ 
-    LAB                 & 26                & 831                  \\ 
-    HSV                 & 21                & 1002                 \\ 
-    YCrCb               & 25                & 1230                 \\ 
-    BGR                 & 23                & 1646                 \\ 
+    RGB                 & 19                & 981                  \\ 
+    LAB                 & 21                & 831                  \\ 
+    HSV                 & 16                & 1002                 \\ 
+    YCrCb               & 26                & 1230                 \\ 
+    BGR                 & 19                & 1646                 \\ 
     \hline
     \end{tabular}
 
