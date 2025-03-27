@@ -36,7 +36,7 @@
 % ============================================================================================
 
 \title{\vspace{0ex}
-Optical flow}
+Mean-Shift tracking}
 
 \author{Marko Medved\vspace{-4.0ex}}
 
@@ -47,44 +47,28 @@ Optical flow}
 \maketitle
 
 \section{Introduction}
-In this assignment, the mean shift method was first implemented and then
- used to develop a tracker, which was tested on the VOT14 dataset. The model's
-  performance was evaluated using different parameters. The tracker was 
-  further improved by introducing additional weights for the histogram, 
-  with the weights selected based on the tracked object's background.
+In this assignment, the mean shift method was implemented and used to develop a tracker, which was 
+evaluated on the VOT14 dataset. The model's performance was analyzed under different parameter settings. 
+The tracker was further enhanced by incorporating additional weights into the histogram, with the weights
+ adjusted based on the background characteristics of the tracked object.
+
 \section{Experiments}
 \subsection{Mean shift mode seeking on the given example}
-The Mean Shift method was tested using several different parameters to assess 
-its performance. Firstly, the kernel size, which determines the region over which
- the probabilities for making a step are calculated, was varied. Additionally, 
- different starting positions on the density function were considered to evaluate 
- how the initial location affects the results. Lastly, three convergence criteria
-  were tested to determine when the iteration should stop: the first, based on step
-  size, stops the iteration when the calculated movement is smaller than one pixel; 
-  the second, using Euclidean distance, halts the process when the distance between 
-  consecutive positions is less than 2 units; and the third, based on change in
-   probability, terminates the iteration when the change in the probability 
-   distribution is minimal, indicating convergence.
+The Mean Shift method was tested with various parameters to evaluate its performance. 
+The kernel size, which defines the region for the calculation of the current step,
+ was adjusted. Larger 
+kernels led to faster convergence, but excessively large or small kernels
+ prevented convergence to the local maximum. Different starting positions were tested, showing
+  that starting points in low-probability areas prevented movement, and for multi-modal 
+  functions, the starting point determined which maximum the algorithm would reach.
 
-  In Figure~\ref{fig:mode_seeking}, we observe how different combinations of
-   these parameters affect convergence. A larger kernel size leads to faster
-    convergence, as the calculated steps are generally larger. However, when the 
-    kernel size is too small, the algorithm fails to converge to the local maximum 
-    because the calculated steps become smaller than a pixel. On the other hand, 
-    using an excessively large kernel can also prevent convergence to the local
-     maximum, as illustrated by the example with the largest kernel size.
-
-     The starting position is also crucial, as it directly influences the algorithm's
-      behavior. If the starting point is located where there is little to no
-       probability in the surrounding area, the algorithm will fail to make any 
-       steps. Additionally, for functions with multiple local maxima, the starting
-        position determines which maximum the algorithm will converge to. 
-
-        Lastly, among the different types of convergence criteria, the sub-pixel 
-        step method is generally the most consistent, although it tends to be the
-         slowest. It's also worth noting that the "small change in probability" 
-         criterion may not always be the best choice, especially if the probabilities 
-         change insignificantly at the start, as it can lead to premature convergence. 
+Three convergence criteria were evaluated: (1) step size, stopping when movement is under 
+one pixel; (2) Euclidean distance, halting when consecutive positions differ by less than 
+two units; and (3) change in probability, stopping when the probability shift is minimal. 
+The sub-pixel step size was the most consistent but slowest, while the probability-based
+ criterion sometimes caused premature convergence if early changes were small. 
+ Figure~\ref{fig:mode_seeking} shows how these parameters influenced convergence. Note 
+ that each color represents a different starting position.
 
 \begin{figure}[h]
     \centering
@@ -123,7 +107,7 @@ The number of failures and the tracking speed (measured on my personal laptop)
   in most cases, it struggles more with certain sequences, such as hand2, fish1,
    torus, and tunnel. The reasons behind these failures will be explored in detail in the next section. 
 
-\begin{table}[ht]
+\begin{table}[h]
   \centering
   \caption{Basic Tracker Results}
   \setlength{\tabcolsep}{3pt}
@@ -151,19 +135,16 @@ The number of failures and the tracking speed (measured on my personal laptop)
   
   
   \subsection{Failure cases discussion}
-  The cases where the tracker experienced the most failures are shown in 
-  Figure~\ref{fig:failures}. In the fish1 and hand2 sequences, the failures 
-  occurred because the color distributions of the bounding box being tracked
-   were very similar to those of the ground truth bounding box, making it difficult
-    for the tracker to detect movement. While the failures in the other two 
-    sequences, torus and tunnel, are less obvious, they can be interpreted in a similar way, with the added complexity of scale changes in both videos. In the torus sequence, as the object rotated around its axis, the color distribution of the tracked patch changed significantly, leading to tracking failure. In the tunnel sequence, when the motorbike moved further away from the camera, its scale decreased, causing the bounding box to become too large and inaccurate.
+  Figure~\ref{fig:failures} shows the cases where the tracker experienced the most failures.
+   In the fish1 and hand2 sequences, failures occurred due to similar color distributions 
+   between the tracked and ground truth bounding boxes, making it hard to detect movement.
+    In the torus and tunnel sequences, scale changes added complexity: in torus, object 
+    rotation altered the color distribution, and in tunnel, the motorbike’s decreasing size 
+    led to an inaccurate bounding box.
 
-  These failure cases suggest two potential improvements for the tracker. 
-  First, the issue with scale changes could be mitigated by trying different
-   template scales and selecting the one that provides the most similarity.
-    Second, the tracker could be improved by addressing the influence of the 
-    background, which is a factor that will be discussed in more detail in the
-     final section.
+  These failure cases suggest two potential improvements: addressing scale changes by testing
+   different template scales and minimizing the influence of the background. The latter is 
+   discussed in the final section.
 
   \begin{figure}[h]
     \centering
@@ -173,42 +154,37 @@ The number of failures and the tracking speed (measured on my personal laptop)
   \end{figure}
 
 \subsection{Parameter tuning}
-Four key parameters were considered: $\sigma$(kernel size), the number of bins in 
-the histograms, the number of iterations per frame, and $\alpha$(the update rate of the template).
- The algorithm was tested on all combinations of 4 different bin counts, 4 different 
- kernel sizes, 3 iteration values, and 4 update rates.
+Four key parameters were tested: $\sigma$ (kernel size), histogram bin count, 
+iterations per frame, and $\alpha$ (template update rate). The algorithm was 
+evaluated for all combinations of 4 bin counts, 4 kernel sizes, 3 iteration values,
+ and 4 update rates.
 
-To determine the optimal number of iterations and bins, the results were aggregated 
-based on these two parameters, as shown in Figure~\ref{fig:params1}. The data indicates 
-that using only one iteration significantly reduces performance, whereas 10 and 20
- iterations produce similar results. The average FPS for 10 and 20 iterations was 1482 
- and 1484, respectively, showing negligible difference in processing speed.
+To determine the optimal number of iterations and bins, results were aggregated based 
+on these parameters (Figure~\ref{fig:params1}). The data shows that using only one
+ iteration significantly reduces performance, while 10 and 20 iterations yield similar 
+ results, with average FPS of 1482 and 1484, respectively. This indicates negligible impact
+  on speed with either 10 or 20 iterations.
 
-Regarding the number of bins, it is clear that 8 or 16 bins provide the best performance.
- Although 8 bins slightly underperform compared to 16, they offer a noticeable increase
-  in average FPS. However, on my personal laptop, the average FPS for 16 bins reached
-   2151, making it the preferred choice unless running on a computationally limited
-    device.
-
-Based on these findings, the optimal settings are 20 iterations and 16 bins, as 
-this combination minimizes failures while maintaining high processing speed. These values 
-will be used for further evaluation.
+Regarding the number of bins, 8 or 16 bins deliver the best performance. While 8 bins 
+slightly underperform compared to 16, they offer a notable increase in FPS. On a personal 
+laptop, 16 bins reached an average FPS of 2151, making it the preferred choice unless
+ running on a device with limited computational power. 
+Based on that 20 iterations and 16 bins were used for further evaluation.
 
  \begin{figure}[h]
   \centering
-  \includegraphics[width=0.99\columnwidth]{figures/nbins_niters.png}
+  \includegraphics[width=0.8\columnwidth]{figures/nbins_niters.png}
   \caption{Performance of the means shift tracker with different numbers of bins and numbers of
   iterations}
   \label{fig:params1}
 \end{figure}
 
-To determine the best values for $\sigma$ and $\alpha$, we refer to Figure~\ref{fig:params2}. 
-Since the FPS remains relatively consistent across different values of these parameters, the 
-focus is on minimizing the number of failures. The results suggest that the optimal value for
- $\sigma$ is clear. However, the choice of $\alpha$ may be more problem-specific, as the average
-  performance is quite similar across the entire dataset. For scenarios where the target is
-   expected to change frequently, $\alpha = 0.01$ is likely the better choice, whereas for more
-    stable targets, $\alpha = 0$ would be more suitable.
+To determine the best values for $\sigma$ and $\alpha$, we refer 
+to Figure~\ref{fig:params2}. Since FPS remains consistent across parameter values,
+ the focus is on minimizing failures. The optimal $\sigma$ is clear (with $\sigma = 1$ we can reach as low as 29 failures),
+  but the choice 
+ of $\alpha$ depends on the problem. For targets whose appearance changes frequently, $\alpha = 0.01$ 
+ is preferred, while for stable targets, $\alpha = 0$ is more suitable.
 
 \begin{figure}[h]
   \centering
@@ -219,17 +195,44 @@ focus is on minimizing the number of failures. The results suggest that the opti
 \end{figure}
 
 \subsection{Feature selection by accounting for the background in different color spaces}
-To address the background influence, the method applied smaller weights to the
- regions in the histogram where the background color predominated. The tracker
-  was also evaluated using five different color spaces. Additionally, another
-   parameter was introduced: the size of the background area. Since the optimal 
-   value for alpha was not definitive in the previous evaluation, two potential 
-   alpha values (0 and 0.01) were also considered in this experiment.  
+To mitigate the influence of the background, the method applied smaller weights to the regions in the histogram where
+ the background color predominated. The tracker was also evaluated using five different color spaces. Additionally,
+  a new parameter was introduced: the size of the background area. Since the optimal value for $\alpha$ was not definitive
+   in the previous evaluation, two promising values ($\alpha = 0$ and $\alpha = 0.01$) were considered in this experiment.
 
+The results showed that the optimal parameters are $\alpha = 0$ and a background size twice the size of the template. 
+The template region itself was excluded when computing the background contribution.
+
+Table~\ref{tab:color_spaces_results} presents the number of failures across the entire dataset for each color 
+space using these optimized parameters, showing a clear improvement over the baseline method. Note that,
+ the performance
+ on the most challenging videos (hand2, fish1, torus, and tunnel) improved, with the number of failures
+  reduced to 4, 1, 0, and 3, respectively. 
+
+   \begin{table}[h]
+    \centering
+    \caption{Performance of the improved tracker across different color spaces.}
+    \begin{tabular}{lcc}
+    \hline
+    \textbf{Color space} & \textbf{Failures} & \textbf{Average Speed [FPS]} \\ 
+    \hline
+    RGB                 & 23                & 981                  \\ 
+    LAB                 & 26                & 831                  \\ 
+    HSV                 & 21                & 1002                 \\ 
+    YCrCb               & 25                & 1230                 \\ 
+    BGR                 & 23                & 1646                 \\ 
+    \hline
+    \end{tabular}
+
+    \label{tab:color_spaces_results}
+    \end{table}
+    
 
 \section{Conclusion}
-
-
+In this assignment, the mean shift algorithm and tracker were implemented.
+ The analysis identified the problematic test sequences and explored the potential reasons for failure.
+  The results demonstrated that the tracker’s performance can be significantly improved by carefully tuning the 
+  parameters and incorporating background information into the model.
 \bibliographystyle{IEEEtran}
 \bibliography{bibliography}
 

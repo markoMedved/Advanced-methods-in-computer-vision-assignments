@@ -107,7 +107,7 @@ class MeanShiftTracker(Tracker):
 
 class MSParams():
     def __init__(self, nbins = 16, sigma = 1, n_iters = 20, 
-                 alpha = 0.0,background_size_ratio = 5, color_space = "HSV"):
+                 alpha = 0.0,background_size_ratio = -1, color_space = "BGR"):
         self.nbins = nbins
         self.sigma = sigma
         self.n_iters = n_iters
