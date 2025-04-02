@@ -35,7 +35,7 @@ class MeanShiftTracker(Tracker):
         # Get the bounding box of the initialized frame, turn stuff to ints
         left, top, width, height = [int(round(el)) for el in region]
         # Initialize the first position 
-        self.position = (left + width//2, top + height/2)
+        self.position = (left + width//2, top + height//2)
         # Get the patch which will be used as the template to follow, add the stuff so that it is the correct size
         self.patch_shape = (width + (1-width%2), height + (1-height%2))
         template,template_mask = get_patch(image, self.position, self.patch_shape)
