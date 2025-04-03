@@ -1,18 +1,18 @@
 import time
 
 import cv2
-
+import seaborn as sns
+import matplotlib.pyplot as plt
 from sequence_utils import VOTSequence
 #from ncc_tracker_example import NCCTracker, NCCParams
 #from ms_tracker import MeanShiftTracker, MSParams
-from correlation_filters import CorrelationFiltersTracker, CFParams
+from correlation_filters_testing import CorrelationFiltersTracker, CFParams, MOSSEParams,MOSSETracker
 
 
 # set the path to directory where you have the sequences
 dataset_path = 'C:\\Users\\marko\\Desktop\\Computer_vision\\Advanced-methods-in-computer-vision-assignments\\Mean-Shift-tracking\\vot2014' # TODO: set to the dataet path on your disk
-sequence ='ball'  # choose the sequence you want to test
+sequence ='basketball'  # choose the sequence you want to test
 name = sequence
-
 # visualization and setup parameters
 win_name = 'Tracking window'
 reinitialize = True
@@ -32,6 +32,9 @@ n_failures = 0
 # tracker = MeanShiftTracker(parameters)
 parameters = CFParams()
 tracker = CorrelationFiltersTracker(parameters)
+# parameters = MOSSEParams()
+# tracker = MOSSETracker(parameters)
+
 
 time_all = 0
 
@@ -54,7 +57,10 @@ while frame_idx < sequence.length():
         t_ = time.time()
         predicted_bbox = tracker.track(img)
         time_all += time.time() - t_
-
+        cv2.imshow("Patch", cv2.resize(tracker.patch,( 3*tracker.patch.shape[1],  3*tracker.patch.shape[0])))
+        cv2.imshow("R", cv2.resize(2*tracker.R,( 3*tracker.patch.shape[1],  3*tracker.patch.shape[0])))
+        # sns.heatmap(tracker.R)
+        # plt.show()
     # calculate overlap (needed to determine failure of a tracker)
     gt_bb = sequence.get_annotation(frame_idx, type='rectangle')
     o = sequence.overlap(predicted_bbox, gt_bb)
@@ -66,6 +72,7 @@ while frame_idx < sequence.length():
     sequence.draw_text(img, '%d/%d' % (frame_idx + 1, sequence.length()), (25, 25))
     sequence.draw_text(img, 'Fails: %d' % n_failures, (25, 55))
     sequence.show_image(img, video_delay)
+    
 
     if o > 0 or not reinitialize:
         # increase frame counter by 1
@@ -79,5 +86,6 @@ while frame_idx < sequence.length():
         # cv2.imwrite(save_path,img)
         # cv2.waitKey(0)
 
+cv2.destroyAllWindows()
 print('Tracking speed: %.1f FPS' % (sequence.length() / time_all))
 print('Tracker failed %d times' % n_failures)

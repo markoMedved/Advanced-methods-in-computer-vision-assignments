@@ -1,0 +1,32 @@
+import numpy as np
+import cv2
+from ex2_utils import get_patch, gausssmooth, Tracker
+from ex3_utils import create_cosine_window, create_gauss_peak
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+
+class CorrelationFiltersTracker(Tracker):
+    def name(self):
+        
+        return 'corr_tracker'
+    def initialize(self, image, region):
+        if len(region) == 8:
+            x_ = np.array(region[::2])
+            y_ = np.array(region[1::2])
+            region = [np.min(x_), np.min(y_), np.max(x_) - np.min(x_) + 1, np.max(y_) - np.min(y_) + 1]
+        # convert to grayscale
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) /255.0
+        # Get the bounding box of the initialized frame, turn stuff to ints
+        left, top, width, height = [int(round(el)) for el in region]
+        # Initialize the first position 
+        self.position = (left + width//2, top + height//2)
+        # Get the patch which will be used as the template to follow, add the stuff so that it is the correct size
+        width *= self.parameters.enlargement
+        height *= self.parameters.enlargement
+        self.patch_shape = (width + (1-width%2), height + (1-height%2))
+        template,template_mask = get_patch(image, self.position, self.patch_shape)
+        # Multiply the patch with the Hannning window
+        self.cosine_window = create_cosine_window(template.T.shape)
+        template *= self.cosine_window 

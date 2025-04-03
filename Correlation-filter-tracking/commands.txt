@@ -1,0 +1,4 @@
+python evaluate_tracker.py --workspace_path C:\\Users\\marko\\Desktop\\Computer_vision\\Advanced-methods-in-computer-vision-assignments\\Correlation-filter-tracking\\workspace  --tracker corr_tracker
+python visualize_result.py --workspace_path C:\\Users\\marko\\Desktop\\Computer_vision\\Advanced-methods-in-computer-vision-assignments\\Correlation-filter-tracking\\workspace --tracker  corr_tracker --sequence ball --show_gt
+python calculate_measures.py --workspace_path C:\\Users\\marko\\Desktop\\Computer_vision\\Advanced-methods-in-computer-vision-assignments\\Correlation-filter-tracking\\workspace --tracker corr_tracker
+ython compare_trackers.py --workspace_path C:\\Users\\marko\\Desktop\\Computer_vision\\Advanced-methods-in-computer-vision-assignments\\Correlation-filter-tracking\\workspace --trackers corr_tracker  --sensitivity 100
