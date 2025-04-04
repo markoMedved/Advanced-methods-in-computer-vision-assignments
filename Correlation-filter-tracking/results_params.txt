@@ -1,0 +1,217 @@
+############################################################################################################
+alpha
+############################################################################################################
+sigma = 1.5
+alpha = 0
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.52
+  Total failures: 92.0
+  Average speed: 1101.10 FPS
+------------------------------------
+alpha = 0.05
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.52
+  Total failures: 58.0
+  Average speed: 1035.03 FPS
+------------------------------------
+alpha = 0.1
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.51
+  Total failures: 61.0
+  Average speed: 1075.09 FPS
+------------------------------------
+alpha = 0.15
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.50
+  Total failures: 56.0
+  Average speed: 1024.50 FPS
+------------------------------------
+alpha = 0.2
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.51
+  Total failures: 60.0
+  Average speed: 1015.17 FPS
+------------------------------------
+alpha = 0.25
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.52
+  Total failures: 60.0
+  Average speed: 991.19 FPS
+------------------------------------
+alpha = 0.3
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.51
+  Total failures: 61.0
+  Average speed: 1003.30 FPS
+------------------------------------
+alpha = 0.35
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.50
+  Total failures: 66.0
+  Average speed: 1061.29 FPS
+------------------------------------
+alpha = 0.4
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.51
+  Total failures: 60.0
+  Average speed: 1003.89 FPS
+------------------------------------
+############################################################################################################
+sigma
+############################################################################################################
+alpha = 0.05
+sigma = 0.5
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.50
+  Total failures: 62.0
+  Average speed: 1005.50 FPS
+------------------------------------
+sigma = 0.75
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.50
+  Total failures: 61.0
+  Average speed: 986.16 FPS
+------------------------------------
+sigma = 1
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.50
+  Total failures: 64.0
+  Average speed: 1056.18 FPS
+------------------------------------
+sigma = 1.25
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.50
+  Total failures: 56.0
+  Average speed: 1056.99 FPS
+------------------------------------
+sigma = 1.5
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.52
+  Total failures: 58.0
+  Average speed: 1020.92 FPS
+------------------------------------
+sigma = 1.75
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.51
+  Total failures: 64.0
+  Average speed: 1047.09 FPS
+------------------------------------
+sigma = 2 
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.51
+  Total failures: 62.0
+  Average speed: 1073.59 FPS
+------------------------------------
+sigma = 2.25 
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.50
+  Total failures: 57.0
+  Average speed: 1052.86 FPS
+------------------------------------
+sigma = 2.5
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.50
+  Total failures: 62.0
+  Average speed: 1008.11 FPS
+------------------------------------
+sigma = 2.75
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.50
+  Total failures: 68.0
+  Average speed: 1047.38 FPS
+------------------------------------
+sigma = 3
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.49
+  Total failures: 68.0
+  Average speed: 1065.33 FPS
+------------------------------------
+############################################################################################################
+LARGER TEMPLATE
+############################################################################################################
+alpha = 0.05
+sigma = 1.5
+enlargement = 1
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.52
+  Total failures: 58.0
+  Average speed: 1020.92 FPS
+------------------------------------
+enlargement = 1.05
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.50
+  Total failures: 55.0
+  Average speed: 1050.83 FPS
+------------------------------------
+enlargement = 1.1
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.48
+  Total failures: 59.0
+  Average speed: 977.55 FPS
+------------------------------------
+enlargement = 1.15
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.49
+  Total failures: 58.0
+  Average speed: 947.87 FPS
+------------------------------------
+enlargement = 1.2
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.46
+  Total failures: 53.0
+  Average speed: 971.34 FPS
+------------------------------------
+
+enlargement = 1.25
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.43
+  Total failures: 58.0
+  Average speed: 848.40 FPS
+------------------------------------
+enlargement = 1.3
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.40
+  Total failures: 59.0
+  Average speed: 793.48 FPS
+------------------------------------
+enlargement = 1.35
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.37
+  Total failures: 57.0
+  Average speed: 844.51 FPS
+------------------------------------
+enlargement = 1.4
+------------------------------------
+Results for tracker: corr_tracker
+  Average overlap: 0.38
+  Total failures: 60.0
+  Average speed: 827.10 FPS
+------------------------------------

@@ -7,7 +7,7 @@ from sequence_utils import VOTSequence
 #from ncc_tracker_example import NCCTracker, NCCParams
 #from ms_tracker import MeanShiftTracker, MSParams
 from correlation_filters_testing import CorrelationFiltersTracker, CFParams, MOSSEParams,MOSSETracker
-
+#from correlation_filters import CorrelationFiltersTracker, CFParams
 
 
 # set the path to directory where you have the sequences

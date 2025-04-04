@@ -1,0 +1,117 @@
+\documentclass[9pt]{IEEEtran}
+
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{array}
+\usepackage{textcomp}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage{gensymb}
+\usepackage{longtable}
+\usepackage{supertabular}
+\usepackage{multicol}
+
+\usepackage[utf8x]{inputenc}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}{}
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\graphicspath{{./figures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor trig-gs}
+
+% ============================================================================================
+
+\title{\vspace{0ex}
+Correlation ﬁlter tracking}
+
+\author{Marko Medved\vspace{-4.0ex}}
+
+% ============================================================================================
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+In this assignment
+Note that all measurements were performed on an AMD Ryzen 7 7435HS CPU.
+
+\section{Experiments}
+\subsection{Base tracker performance results}
+Firstly, the simplified correlation filter tracker was implemented and evaluated
+using the Tracking toolkit-lite and the VOT 2014 dataset. We can see the 
+results in Table~\ref{tab:corr_tracker_results}. Note that the used parameters here 
+were:  $\sigma = 1.5$ and $\alpha = 0.3$, where $\sigma$ is the parameter
+ of the Gaussian and $\alpha$ is the update speed parameter. Note that the 
+ regularization parameter was set to 2000 (this value is used in all 
+ evaluations in this assignment).
+
+
+\begin{table}[ht]
+  \centering
+  \caption{Performance of the basic correlation filter tracker.}
+  \begin{tabular}{l|c}
+  \hline
+  \textbf{Metric}            & \textbf{Value}        \\
+  \hline
+  Average Overlap            & 0.51                  \\
+  Total Failures             & 61.0                    \\
+  Average Speed (FPS)        & 1052.08            \\
+  \hline
+  \end{tabular}
+  \label{tab:corr_tracker_results}
+  \end{table}
+
+  \subsection{Testing different parameters}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.99\columnwidth]{figures/tracking_alpha.png}
+    \caption{Comparison of the tracker with different update speeds}
+    \label{fig:alpha}
+\end{figure}
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.99\columnwidth]{figures/tracking_sigma.png}
+  \caption{Comparison of the tracker performance with different standard deviations 
+  of the Gaussian}
+  \label{fig:sigma}
+\end{figure}
+
+  \subsection{Testing larger patches}
+  more bg - less failures, worse overlap since the tracker tracks bg
+
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.99\columnwidth]{figures/tracking_sigma.png}
+    \caption{Comparison of the tracker performance with different background 
+    enlargement factors}
+    \label{fig:enlargement}
+  \end{figure}
+
+
+\section{Conclusion}
+In this assignment, the mean shift algorithm and tracker were implemented.
+ The analysis identified the problematic test sequences and explored the potential reasons for failure.
+  The results demonstrated that the tracker’s performance can be significantly improved by carefully tuning the 
+  parameters and incorporating background information into the model.
+\bibliographystyle{IEEEtran}
+\bibliography{bibliography}
+
+\end{document}
