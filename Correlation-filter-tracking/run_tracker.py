@@ -11,7 +11,7 @@ from correlation_filters_testing import CorrelationFiltersTracker, CFParams, MOS
 
 # set the path to directory where you have the sequences
 dataset_path = 'C:\\Users\\marko\\Desktop\\Computer_vision\\Advanced-methods-in-computer-vision-assignments\\Mean-Shift-tracking\\vot2014' # TODO: set to the dataet path on your disk
-sequence ='ball'  # choose the sequence you want to test
+sequence ='motocross'  # choose the sequence you want to test
 name = sequence
 # visualization and setup parameters
 win_name = 'Tracking window'

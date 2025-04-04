@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-from ex2_utils import get_patch, gausssmooth#, Tracker
+from ex2_utils import get_patch, gausssmooth
 from utils.tracker import Tracker
 from ex3_utils import create_cosine_window, create_gauss_peak
 import matplotlib.pyplot as plt
@@ -48,8 +48,6 @@ class CorrelationFiltersTracker(Tracker):
         template *= self.cosine_window  * template_mask
         # Create the Gaussian response only once
         self.G = np.fft.fft2(create_gauss_peak(template.T.shape, self.parameters.sigma))
-        # plt.imshow(create_gauss_peak(template.T.shape, self.parameters.sigma))
-        # plt.show()
         self.H_conj = self.get_H_conj(template)
 
     def track(self, image):
@@ -77,7 +75,6 @@ class CorrelationFiltersTracker(Tracker):
         
         # Update filter
         self.patch, patch_mask = get_patch(image, self.position, self.patch_shape)
-        #self.patch = np.log1p(self.patch)
         self.patch *= self.cosine_window * patch_mask
         
         self.H_conj = self.H_conj * (1- self.parameters.alpha) + self.parameters.alpha * self.get_H_conj(self.patch)
@@ -160,8 +157,8 @@ class MOSSETracker(Tracker):
         if y_max > height/2:
             y_max = y_max - height
         self.position = (self.position[0] + x_max, self.position[1] + y_max)
+        # Update filter, using PSR tresholding
         if psr > self.parameters.psr_tresh:
-            # Update filter, using PSR
             self.patch, patch_mask = get_patch(image, self.position, self.patch_shape)
             self.patch *= self.cosine_window * patch_mask
             new_A, new_B = self.get_A_B(self.patch)
@@ -172,7 +169,7 @@ class MOSSETracker(Tracker):
         return [self.position[0] - self.patch_shape[0]//2, self.position[1] - self.patch_shape[1]//2, self.patch_shape[0]//self.parameters.enlargement, self.patch_shape[1]//self.parameters.enlargement]
 
 class MOSSEParams():
-    def __init__(self,sigma = 1.5, lmbd = 2000, alpha = 0.3, enlargement = 1.1, psr_window = 11, psr_tresh=0.0):
+    def __init__(self,sigma = 1.5, lmbd = 2000, alpha = 0.05, enlargement = 1.05, psr_window = 11, psr_tresh=4.0):        
         self.sigma=sigma
         self.lmbd = lmbd
         self.alpha = alpha

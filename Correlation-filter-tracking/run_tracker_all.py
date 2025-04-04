@@ -7,7 +7,7 @@ from sequence_utils import VOTSequence
 #from ncc_tracker_example import NCCTracker, NCCParams
 #from ms_tracker import MeanShiftTracker, MSParams
 from correlation_filters_testing import CorrelationFiltersTracker, CFParams, MOSSEParams,MOSSETracker
-#from correlation_filters import CorrelationFiltersTracker, CFParams
+
 
 
 # set the path to directory where you have the sequences
@@ -32,12 +32,15 @@ for sequence in filenames:
     # create parameters and tracker objects
     # parameters = NCCParams()
     # tracker = NCCTracker(parameters)
-    parameters = CFParams()
-    tracker = CorrelationFiltersTracker(parameters)
-    # parameters = MOSSEParams()
-    # tracker = MOSSETracker(parameters)
+    # parameters = CFParams()
+    # tracker = CorrelationFiltersTracker(parameters)
+    parameters = MOSSEParams()
+    tracker = MOSSETracker(parameters)
     time_all = 0
-
+    time_init = 0
+    cnt_init = 1
+    time_track = 0
+    cnt_track = 0
     # initialize visualization window
     #sequence.initialize_window(win_name)
     # tracking loop - goes over all frames in the video sequence
@@ -48,15 +51,21 @@ for sequence in filenames:
         if frame_idx == init_frame:
             # initialize tracker (at the beginning of the sequence or after tracking failure)
             #print(sequence.get_annotation(frame_idx, type='rectangle'))
-            t_ = time.time()
+            t_ = time.perf_counter()
             tracker.initialize(img, sequence.get_annotation(frame_idx, type='rectangle'))
-            time_all += time.time() - t_
+            dif =  time.perf_counter() - t_
+            time_all += dif
+            time_init += dif
+            cnt_init +=1
             predicted_bbox = sequence.get_annotation(frame_idx, type='rectangle')
         else:
             # track on current frame - predict bounding box
-            t_ = time.time()
+            t_ = time.perf_counter()
             predicted_bbox = tracker.track(img)
-            time_all += time.time() - t_
+            dif = time.perf_counter() - t_
+            time_all += dif
+            time_track += dif
+            cnt_track +=1
 
         # calculate overlap (needed to determine failure of a tracker)
         gt_bb = sequence.get_annotation(frame_idx, type='rectangle')
@@ -79,6 +88,8 @@ for sequence in filenames:
             init_frame = frame_idx
             n_failures += 1
 
+    # print('Average initialization speed: %.1f FPS' % ((cnt_init+ 1e-7)/(time_init + 1e-7)))
+    # print('Average track speed: %.1f FPS' % (cnt_track/time_track))
     print('Tracking speed: %.1f FPS' % (sequence.length() / time_all))
     print('Tracker failed %d times' % n_failures)
     total_errors += n_failures

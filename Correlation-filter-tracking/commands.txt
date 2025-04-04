@@ -1,5 +1,5 @@
-python evaluate_tracker.py --workspace_path C:\\Users\\marko\\Desktop\\Computer_vision\\Advanced-methods-in-computer-vision-assignments\\Correlation-filter-tracking\\workspace  --tracker corr_tracker
-python calculate_measures.py --workspace_path C:\\Users\\marko\\Desktop\\Computer_vision\\Advanced-methods-in-computer-vision-assignments\\Correlation-filter-tracking\\workspace --tracker corr_tracker
+python evaluate_tracker.py --workspace_path C:\\Users\\marko\\Desktop\\Computer_vision\\Advanced-methods-in-computer-vision-assignments\\Correlation-filter-tracking\\workspace  --tracker MOSSE_tracker
+python calculate_measures.py --workspace_path C:\\Users\\marko\\Desktop\\Computer_vision\\Advanced-methods-in-computer-vision-assignments\\Correlation-filter-tracking\\workspace --tracker MOSSE_tracker
 
 
 

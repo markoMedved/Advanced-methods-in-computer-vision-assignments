@@ -80,7 +80,7 @@ class CorrelationFiltersTracker(Tracker):
         return [self.position[0] - self.patch_shape[0]/2, self.position[1] - self.patch_shape[1]/2, self.patch_shape[0]/self.parameters.enlargement, self.patch_shape[1]/self.parameters.enlargement]
 
 class CFParams():
-    def __init__(self,sigma = 3, lmbd = 2000, alpha = 0.05, enlargement = 1.4):
+    def __init__(self,sigma = 1.5, lmbd = 2000, alpha = 0.05, enlargement = 1.2):
         self.sigma=sigma
         self.lmbd = lmbd
         self.alpha = alpha
@@ -162,12 +162,13 @@ class MOSSETracker(Tracker):
             new_A, new_B = self.get_A_B(self.patch)
             self.A = self.A * (1- self.parameters.alpha) + self.parameters.alpha * new_A
             self.B = self.B * (1- self.parameters.alpha) + self.parameters.alpha * new_B
-
+        else:
+            print("here")
 
         return [self.position[0] - self.patch_shape[0]//2, self.position[1] - self.patch_shape[1]//2, self.patch_shape[0]//self.parameters.enlargement, self.patch_shape[1]//self.parameters.enlargement]
 
 class MOSSEParams():
-    def __init__(self,sigma = 1.5, lmbd = 1000, alpha = 0.3, enlargement = 2, psr_window = 11, psr_tresh=2.0):
+    def __init__(self,sigma = 1.5, lmbd = 2000, alpha = 0.05, enlargement = 1.05, psr_window = 11, psr_tresh=4.0):
         self.sigma=sigma
         self.lmbd = lmbd
         self.alpha = alpha

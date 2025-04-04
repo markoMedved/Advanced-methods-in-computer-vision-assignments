@@ -1,0 +1,204 @@
+ball
+Tracking speed: 1302.1 FPS
+Tracker failed 1 times
+basketball
+Tracking speed: 379.4 FPS
+Tracker failed 3 times
+bicycle
+Tracking speed: 1877.0 FPS
+Tracker failed 1 times
+bolt
+Tracking speed: 522.1 FPS
+Tracker failed 2 times
+car
+Tracking speed: 1164.7 FPS
+Tracker failed 0 times
+david
+Tracking speed: 930.9 FPS
+Tracker failed 0 times
+diving
+Tracking speed: 685.3 FPS
+Tracker failed 4 times
+drunk
+Tracking speed: 478.6 FPS
+Tracker failed 0 times
+fernando
+Tracking speed: 188.8 FPS
+Tracker failed 2 times
+fish1
+Tracking speed: 1373.6 FPS
+Tracker failed 7 times
+fish2
+Tracking speed: 521.3 FPS
+Tracker failed 7 times
+gymnastics
+Tracking speed: 634.2 FPS
+Tracker failed 3 times
+hand1
+Tracking speed: 1248.8 FPS
+Tracker failed 6 times
+hand2
+Tracking speed: 1348.1 FPS
+Tracker failed 12 times
+jogging
+Tracking speed: 1466.0 FPS
+Tracker failed 1 times
+motocross
+Tracking speed: 179.9 FPS
+Tracker failed 1 times
+polarbear
+Tracking speed: 644.3 FPS
+Tracker failed 0 times
+skating
+Tracking speed: 615.1 FPS
+Tracker failed 2 times
+sphere
+Tracking speed: 351.0 FPS
+Tracker failed 0 times
+sunshade
+Tracking speed: 1288.3 FPS
+Tracker failed 1 times
+surfing
+Tracking speed: 2157.4 FPS
+Tracker failed 0 times
+torus
+Tracking speed: 1388.3 FPS
+Tracker failed 6 times
+trellis
+Tracking speed: 541.3 FPS
+Tracker failed 0 times
+tunnel
+Tracking speed: 632.6 FPS
+Tracker failed 0 times
+woman
+Tracking speed: 1020.5 FPS
+Tracker failed 1 times
+
+#########################################
+init vs track speed
+#########################################
+ball
+Average initialization speed: 1448.9 FPS
+Average track speed: 1139.6 FPS
+Tracking speed: 1146.5 FPS
+Tracker failed 1 times
+basketball
+Average initialization speed: 454.4 FPS
+Average track speed: 462.4 FPS
+Tracking speed: 469.4 FPS
+Tracker failed 3 times
+bicycle
+Average initialization speed: 2170.3 FPS
+Average track speed: 1736.5 FPS
+Tracking speed: 1759.9 FPS
+Tracker failed 1 times
+bolt
+Average initialization speed: 920.2 FPS
+Average track speed: 796.5 FPS
+Tracking speed: 814.0 FPS
+Tracker failed 2 times
+car
+Average initialization speed: 2418.7 FPS
+Average track speed: 1356.8 FPS
+Tracking speed: 1356.1 FPS
+Tracker failed 0 times
+david
+Average initialization speed: 1858.7 FPS
+Average track speed: 1012.4 FPS
+Tracking speed: 1012.2 FPS
+Tracker failed 0 times
+diving
+Average initialization speed: 886.1 FPS
+Average track speed: 649.4 FPS
+Tracking speed: 702.7 FPS
+Tracker failed 4 times
+drunk
+Average initialization speed: 822.9 FPS
+Average track speed: 472.6 FPS
+Tracking speed: 472.5 FPS
+Tracker failed 0 times
+fernando
+Average initialization speed: 158.5 FPS
+Average track speed: 188.2 FPS
+Tracking speed: 192.3 FPS
+Tracker failed 2 times
+fish1
+Average initialization speed: 1430.2 FPS
+Average track speed: 1482.4 FPS
+Tracking speed: 1578.9 FPS
+Tracker failed 7 times
+fish2
+Average initialization speed: 697.7 FPS
+Average track speed: 539.9 FPS
+Tracking speed: 588.9 FPS
+Tracker failed 7 times
+gymnastics
+Average initialization speed: 752.8 FPS
+Average track speed: 540.3 FPS
+Tracking speed: 574.8 FPS
+Tracker failed 3 times
+hand1
+Average initialization speed: 1266.0 FPS
+Average track speed: 1096.2 FPS
+Tracking speed: 1216.2 FPS
+Tracker failed 6 times
+hand2
+Average initialization speed: 1321.1 FPS
+Average track speed: 1165.5 FPS
+Tracking speed: 1425.2 FPS
+Tracker failed 12 times
+jogging
+Average initialization speed: 1830.0 FPS
+Average track speed: 1443.4 FPS
+Tracking speed: 1460.7 FPS
+Tracker failed 1 times
+motocross
+Average initialization speed: 309.5 FPS
+Average track speed: 171.6 FPS
+Tracking speed: 176.3 FPS
+Tracker failed 1 times
+polarbear
+Average initialization speed: 1099.6 FPS
+Average track speed: 702.0 FPS
+Tracking speed: 701.4 FPS
+Tracker failed 0 times
+skating
+Average initialization speed: 638.0 FPS
+Average track speed: 550.4 FPS
+Tracking speed: 561.0 FPS
+Tracker failed 2 times
+sphere
+Average initialization speed: 540.3 FPS
+Average track speed: 243.6 FPS
+Tracking speed: 243.7 FPS
+Tracker failed 0 times
+sunshade
+Average initialization speed: 1185.3 FPS
+Average track speed: 933.2 FPS
+Tracking speed: 953.4 FPS
+Tracker failed 1 times
+surfing
+Average initialization speed: 2554.9 FPS
+Average track speed: 1397.3 FPS
+Tracking speed: 1396.9 FPS
+Tracker failed 0 times
+torus
+Average initialization speed: 1072.8 FPS
+Average track speed: 863.5 FPS
+Tracking speed: 952.1 FPS
+Tracker failed 6 times
+trellis
+Average initialization speed: 942.8 FPS
+Average track speed: 352.3 FPS
+Tracking speed: 352.5 FPS
+Tracker failed 0 times
+tunnel
+Average initialization speed: 664.7 FPS
+Average track speed: 342.0 FPS
+Tracking speed: 342.0 FPS
+Tracker failed 0 times
+woman
+Average initialization speed: 554.8 FPS
+Average track speed: 573.4 FPS
+Tracking speed: 576.2 FPS
+Tracker failed 1 times
