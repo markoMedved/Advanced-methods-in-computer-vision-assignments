@@ -20,7 +20,6 @@ def kalman_step(A, C, Q, R, y, x, V):
 
     xpred = np.matmul(A, x)
     Vpred = np.matmul(np.matmul(A, V), A.transpose()) + Q
-    print(C.shape, xpred.shape)
     e = y - np.matmul(C, xpred)  # error (innovation)
     S = np.matmul(np.matmul(C, Vpred), C.transpose()) + R
     ss = max(V.shape)
