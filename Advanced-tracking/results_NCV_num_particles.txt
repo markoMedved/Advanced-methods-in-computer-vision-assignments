@@ -1,0 +1,56 @@
+N = 1
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.27
+  Total failures: 933.0
+  Average speed: 2246.75 FPS
+------------------------------------
+N = 10
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.47
+  Total failures: 82.0
+  Average speed: 677.51 FPS
+------------------------------------
+N = 30
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.52
+  Total failures: 37.0
+  Average speed: 254.00 FPS
+------------------------------------
+N = 50
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.51
+  Total failures: 34.0
+  Average speed: 161.42 FPS
+------------------------------------
+N = 75
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.53
+  Total failures: 36.0
+  Average speed: 122.58 FPS
+------------------------------------
+N = 100
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.50
+  Total failures: 29.0
+  Average speed: 86.64 FPS
+------------------------------------
+N = 125
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.53
+  Total failures: 33.0
+  Average speed: 69.71 FPS
+------------------------------------
+N = 150 
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.53
+  Total failures: 31.0
+  Average speed: 62.55 FPS
+------------------------------------

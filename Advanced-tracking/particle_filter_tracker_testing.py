@@ -1,8 +1,7 @@
 import numpy as np
 import cv2
-from ex2_utils import get_patch, create_epanechnik_kernel, extract_histogram
+from ex2_utils import Tracker, get_patch, create_epanechnik_kernel, extract_histogram
 from ex4_utils import sample_gauss
-from utils.tracker import Tracker
 
 # TODO after it works nicely, change it to test it with the toolkit
 
@@ -15,10 +14,6 @@ class ParticleFilterTracker(Tracker):
         """Initialized the tracker with the provided bounding box for the first frame"""
         # Set the random seed
         np.random.seed(seed=seed)
-
-        # Set the parameters
-        self.parameters = ParticleFilterParams()
-        
         # Convert image to the target color space
         if self.parameters.color_space in ["cv2.COLOR_BGR2RGB", "cv2.COLOR_BGR2LAB", 
                                            "cv2.COLOR_BGR2HSV", "cv2.COLOR_BGR2YCrCb"]:
@@ -100,11 +95,6 @@ class ParticleFilterTracker(Tracker):
 
 
     def track(self, image):
-         # Convert image to the target color space
-        if self.parameters.color_space in ["cv2.COLOR_BGR2RGB", "cv2.COLOR_BGR2LAB", 
-                                           "cv2.COLOR_BGR2HSV", "cv2.COLOR_BGR2YCrCb"]:
-            image = cv2.cvtColor(image, eval(self.parameters.color_space))
-
         # normalize the weights
         weigts_tmp = self.particle_weights/ np.sum(self.particle_weights)
         # Get the cdf
@@ -155,14 +145,14 @@ class ParticleFilterTracker(Tracker):
 
 class ParticleFilterParams():
     # Note for NCA set alpha higher
-    def __init__(self, num_particles=100, q_size_ratio=0.9,
-                  alpha = 0.0001, motion_model = "NCV",nbins=16, 
-                  sigma=1, color_space = "RGB"):
+    def __init__(self, num_particles=100, q_size_ratio=0.03,
+                  alpha = 0.001, motion_model = "NCA",nbins=16, 
+                  sigma=1, color_space = ""):
         self.num_particles = num_particles
         self.q_size_ratio = q_size_ratio # Percentege of the target size
         self.nbins = nbins
         self.sigma = sigma
-        self.color_space = f"cv2.COLOR_BGR2{color_space}"
+        self.color_space = color_space
         self.motion_model = motion_model
         self.alpha = alpha
 

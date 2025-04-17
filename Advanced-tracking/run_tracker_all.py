@@ -1,13 +1,15 @@
-import os
 import time
 
 import cv2
-
+import seaborn as sns
+import matplotlib.pyplot as plt
 from sequence_utils import VOTSequence
 #from ncc_tracker_example import NCCTracker, NCCParams
 #from ms_tracker import MeanShiftTracker, MSParams
-from correlation_filters_testing import CorrelationFiltersTracker, CFParams, MOSSEParams,MOSSETracker
-
+#from correlation_filters_testing import CorrelationFiltersTracker, CFParams, MOSSEParams,MOSSETracker
+from particle_filter_tracker import ParticleFilterParams, ParticleFilterTracker
+import numpy as np
+import os
 
 
 # set the path to directory where you have the sequences
@@ -34,8 +36,8 @@ for sequence in filenames:
     # tracker = NCCTracker(parameters)
     # parameters = CFParams()
     # tracker = CorrelationFiltersTracker(parameters)
-    parameters = MOSSEParams()
-    tracker = MOSSETracker(parameters)
+    parameters = ParticleFilterParams()
+    tracker = ParticleFilterTracker(parameters)
     time_all = 0
     time_init = 0
     cnt_init = 1

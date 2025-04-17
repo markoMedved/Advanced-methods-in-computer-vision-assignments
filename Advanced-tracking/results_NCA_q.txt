@@ -1,0 +1,91 @@
+q = 0.001
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.41
+  Total failures: 133.0
+  Average speed: 89.62 FPS
+------------------------------------
+q=0.01
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.44
+  Total failures: 116.0
+  Average speed: 86.12 FPS
+------------------------------------
+q=0.1
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.46
+  Total failures: 124.0
+  Average speed: 80.90 FPS
+------------------------------------
+q = 0.2
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.45
+  Total failures: 109.0
+  Average speed: 88.86 FPS
+------------------------------------
+q = 0.4
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.46
+  Total failures: 138.0
+  Average speed: 94.62 FPS
+------------------------------------
+q = 0.5
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.45
+  Total failures: 136.0
+  Average speed: 94.78 FPS
+------------------------------------
+q = 0.6
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.46
+  Total failures: 137.0
+  Average speed: 89.30 FPS
+------------------------------------
+q = 0.7
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.48
+  Total failures: 152.0
+  Average speed: 88.16 FPS
+------------------------------------
+q = 0.8
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.46
+  Total failures: 155.0
+  Average speed: 87.57 FPS
+------------------------------------
+q = 0.9
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.46
+  Total failures: 144.0
+  Average speed: 88.34 FPS
+------------------------------------
+q = 1.0
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.47
+  Total failures: 146.0
+  Average speed: 84.71 FPS
+------------------------------------
+q = 1.1
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.48
+  Total failures: 168.0
+  Average speed: 88.24 FPS
+------------------------------------
+q = 1.2
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.46
+  Total failures: 161.0
+  Average speed: 83.46 FPS
+------------------------------------

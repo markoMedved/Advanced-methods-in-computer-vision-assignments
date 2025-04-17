@@ -1,0 +1,36 @@
+## NOTE params were optimized od BGR
+BGR
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.50
+  Total failures: 29.0
+  Average speed: 86.64 FPS
+------------------------------------
+RGB
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.50
+  Total failures: 29.0
+  Average speed: 84.12 FPS
+------------------------------------
+LAB
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.53
+  Total failures: 38.0
+  Average speed: 90.72 FPS
+------------------------------------
+HSV
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.53
+  Total failures: 38.0
+  Average speed: 58.26 FPS
+------------------------------------
+YCrCb
+------------------------------------
+Results for tracker: particle_filter_tracker
+  Average overlap: 0.52
+  Total failures: 43.0
+  Average speed: 55.17 FPS
+------------------------------------
