@@ -1,5 +1,5 @@
 # Fdb version 4
-["bibtex main"] 0 "main.aux" "main.bbl" "main" 1744919705.98211 0
+["bibtex main"] 0 "main.aux" "main.bbl" "main" 1744975982.18664 0
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/bibtex/bst/ieeetran/IEEEtran.bst" 1440622569 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
   "bibliography.bib" 0 -1 0 ""
   "main.aux" 0 -1 0 "pdflatex"
@@ -7,12 +7,13 @@
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1744919703.77828 "c:/Users/marko/Desktop/Computer_vision/Advanced-methods-in-computer-vision-assignments/Advanced-tracking/report/main.tex" "main.pdf" "main" 1744919705.98281 0
+["pdflatex"] 1744975978.85332 "c:/Users/marko/Desktop/Computer_vision/Advanced-methods-in-computer-vision-assignments/Advanced-tracking/report/main.tex" "main.pdf" "main" 1744975982.1873 0
   "C:/Users/marko/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1744726569 82507 a9eef8696c92627b87e9975edea03b2a ""
   "C:/Users/marko/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1741285665 24225045 9df87bb9afcf68668f63d57d7a3d7d4c ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc" 1256929440 2375 baa924870cfb487815765f9094cf3728 ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc" 1256929440 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc" 1256929440 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
+  "C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc" 1256929440 2840 216e6e45ad352e2456e1149f28885bee ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc" 1256929440 2327 9d6df24f9c4f7368395224341a95523a ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/times/ptmb7t.tfm" 1136768654 2172 fd0c924230362ff848a33632ed45dc23 ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/times/ptmbi7t.tfm" 1136768654 2228 e564491c42a4540b5ebb710a75ff306c ""
@@ -87,6 +88,8 @@
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb" 1256929440 122174 a2d5e73f396ddbeb3bdf5c79aea0993d ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb" 1256929440 121065 ba8daf2228d9e511988917831f1e22e9 ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri9.pfb" 1256929440 109598 c83a0202c1f22acb1242fa66ec5da7de ""
+  "C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy6.pfb" 1256929440 28109 6d61305ed3d0eb794ebe36f15cf44aa0 ""
+  "C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy9.pfb" 1256929440 27835 e135c98a7736a509f536880c6a6e3bd9 ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/tex/generic/atbegshi/atbegshi.sty" 1575571100 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/tex/generic/babel/babel.sty" 1704647332 150008 7a05b0fdc0167c04e192003e780ab195 ""
@@ -179,14 +182,16 @@
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/tex/latex/ucs/utf8x.def" 1700127473 8944 e3433baec74c4b7b278c6b6a547ff9ec ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
-  "c:/Users/marko/Desktop/Computer_vision/Advanced-methods-in-computer-vision-assignments/Advanced-tracking/report/main.tex" 1744919703 7419 8c35aabdf8e7ffd13bbe40a8b1ab9b05 ""
-  "figures/0.png" 1744912564 250919 7a7678bc2ef2d9a496cb7f5bcb116f5a ""
-  "figures/1.png" 1744912565 253589 fa7a267f9b88a743e1024721ea32e56c ""
-  "figures/2.png" 1744912566 290105 bb540604a9614234ef2c18e4729d3b3e ""
-  "main.aux" 1744919705 2783 87df44c9b481e719478fa960567a917d "pdflatex"
+  "c:/Users/marko/Desktop/Computer_vision/Advanced-methods-in-computer-vision-assignments/Advanced-tracking/report/main.tex" 1744974548 12964 4ab2da855af1941e8c60525b361d166e ""
+  "figures/motion_models.png" 1744974729 145858 10a980d1a1b06f2958a857c177951b9c ""
+  "figures/particles.png" 1744974677 132667 6ce21bc36e82aa3d6d28bed6ef730de6 ""
+  "figures/pic0.png" 1744975972 491088 955e351868bbeff2a46e32aec081539e ""
+  "figures/pic1.png" 1744975973 488473 3f17d2b784af09e28b5c3b9da9cc5d2e ""
+  "figures/pic2.png" 1744975974 577618 b1cff325624851041305b009a00856d6 ""
+  "main.aux" 1744975981 3800 4a1fb8964a5df76162d5b41dfffb2e8e "pdflatex"
   "main.bbl" 0 -1 0 "bibtex main"
-  "main.out" 1744919705 1848 c1cf04d736bcc86adb95c8396c7c2188 "pdflatex"
-  "main.tex" 1744919703 7419 8c35aabdf8e7ffd13bbe40a8b1ab9b05 ""
+  "main.out" 1744975981 2159 b945d2de796d1cfa9489d08ab8d12d5f "pdflatex"
+  "main.tex" 1744974548 12964 4ab2da855af1941e8c60525b361d166e ""
   (generated)
   "main.aux"
   "main.log"

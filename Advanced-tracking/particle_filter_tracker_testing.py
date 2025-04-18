@@ -145,8 +145,8 @@ class ParticleFilterTracker(Tracker):
 
 class ParticleFilterParams():
     # Note for NCA set alpha higher
-    def __init__(self, num_particles=100, q_size_ratio=0.03,
-                  alpha = 0.001, motion_model = "NCA",nbins=16, 
+    def __init__(self, num_particles=100, q_size_ratio=0.9,
+                  alpha = 0.001, motion_model = "NCV",nbins=16, 
                   sigma=1, color_space = ""):
         self.num_particles = num_particles
         self.q_size_ratio = q_size_ratio # Percentege of the target size

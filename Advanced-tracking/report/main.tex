@@ -47,63 +47,83 @@ Mean-Shift tracking}
 \maketitle
 
 \section{Introduction}
+In this assignment, we implemented two different Bayesian trackers: the Kalman filter tracker 
+and the particle filter tracker. We derived the input matrices for the Random Walk, 
+Nearly Constant Velocity, and Nearly Constant Acceleration motion models. The Kalman
+ filter tracker was tested on three artificial trajectories, while the particle filter 
+ tracker was evaluated on the VOT2014 dataset. For the particle filter tracker, we compared the performance of different
+  motion models and determined the optimal dynamic noise parameter for all three models.
+   Additionally, we tested the tracker with varying numbers of particles and explored its
+    performance across different color spaces.
+
 
 \section{Experiments}
 \subsection{Kalman filtering}
-In this section we derived the input matrices (see Appendix) for the Random walk (RW), 
-Nearly constant velocity (NCV) and Nearly constant acceleration (NCA) motion 
-models. We tested all these models on three different trajectories. \\
+In this section, we derive the input matrices (see Appendix) for the Random Walk (RW), 
+Nearly Constant Velocity (NCV), and Nearly Constant Acceleration (NCA) motion models. 
+These models were tested on three different trajectories to evaluate their performance.
 
-Firstly on Figures~\ref{fig:kf1},~\ref{fig:kf2} and~\ref{fig:kf3} we can 
-see the trajectories and their filtered counterparts in dependence to different 
-motion models as well as constants for dynamics noise(q) and measurement 
-covariance(r). On all three plots, for all three motion models, we can see that when setting a large q and small 
-r the Filtered measurements follow the measurements nicely, which is expected 
-since we assign more uncertainty to the dynamics, so our tracker mostly uses the 
-measurements for prediction. \\
 
-On the other hand, when setting a high r and low q 
-we are relying more on the motion model. We can see that because the tracker relies 
-mostly on the motion models, the random walk cannot follow the path fast enough. As 
-for the NCV and NCA models, we can see that the paths start to differ a lot from 
-the measurements, especially in the second plot. This is not necesarilly a bad thing, since 
-in situations where our measurements are poor, the tracker will perform better, since it 
-will rely more on the motion model. \\
+Figures~\ref{fig:kf1},~\ref{fig:kf2}, and~\ref{fig:kf3} show the trajectories and their 
+filtered counterparts for the different motion models, as well as the effects of varying the 
+dynamics noise constant (\(q\)) and the measurement covariance constant(\(r\)). In all three plots,
+ we observe that when \(q\) is large and \(r\) is small, the filtered measurements closely 
+ follow the actual measurements. This is expected because a larger \(q\) assigns more uncertainty 
+ to the dynamics, leading the tracker to rely more heavily on the measurements for prediction.
 
-The optimal parameters are dependent on the choice of motion model and specific application.
-For RW we should rely more on the measurements so maybe $q=5$ and $r=1$ would be 
-acceptable. For the NCV and NCA models we can rely more on the motion model 
-so we can pick a larger r. 
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.99\columnwidth]{figures/0.png}
-    \caption{Kalman filtering method on the spiral curve}
-    \label{fig:kf1}
-\end{figure}
+ On the other hand, when \(r\) is set high and \(q\) is set low, the tracker 
+ relies more on the motion model. This is evident because, in this case, the 
+ random walk struggles to follow the path quickly enough. For the NCV and NCA models, 
+ we observe that the paths start to deviate significantly from the measurements, particularly
+  in the second plot. However, this is in general not a negative outcome. In scenarios where
+   measurements are unreliable or sparse, the tracker can perform better by depending more on
+    the motion model, which compensates for the poor measurements.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.99\columnwidth]{figures/1.png}
-  \caption{Kalman filtering method on the square spiral curve}
-  \label{fig:kf2}
-\end{figure}
+
+    The optimal parameters depend on both the choice of motion model and the specific
+     application. For the Random Walk model, it is advisable to rely more
+      on the measurements, particularly when the movements are erratic.
+       In such cases, values like \(q = 5\) and \(r = 1\) would be suitable. 
+       In contrast, for the Nearly Constant Velocity  and Nearly Constant Acceleration
+        models, where the movement is more predictable or dynamic, we can place more
+         trust in the motion model, which means selecting a larger value for \(r\).
+
+
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.99\columnwidth]{figures/2.png}
-  \caption{Kalman filtering method on random gaussian noise}
-  \label{fig:kf3}
+  \includegraphics[width=1\columnwidth]{figures/pic0.png}
+  \caption{Kalman filtering method on the spiral curve}
+  \label{fig:kf1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\columnwidth]{figures/pic1.png}
+\caption{Kalman filtering method on the square spiral curve}
+\label{fig:kf2}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\columnwidth]{figures/pic2.png}
+\caption{Kalman filtering method on random gaussian noise}
+\label{fig:kf3}
 \end{figure}
 
 \subsection{Results of the basic particle filter tracker implementation}
-Here we implemented the particle filter tracker using the NCV motion model 
-and color histograms for the visual model. We can observe the results for the 
-entire VOT 2014 dataset in 
-Table~\ref{tab:pf_tracker_results}. Note that we used an update speed 
-$\alpha = 0.00001$, kernel size $\sigma = 1$, 16 bins in the histogram, the
- dynamic noise constant was $80\%$ of the size of the smaller dimension of the 
- patch and the number of particles was set to 100.
+In this section, we implemented the particle filter tracker using the Nearly
+ Constant Velocity  motion model and color histograms for the visual model. The
+  results for the entire VOT 2014 dataset are presented in Table~\ref{tab:pf_tracker_results}.
+   For the implementation, we set the update speed to \(\alpha = 0.0001\), the kernel size 
+   to \(\sigma = 1\), and used 16 bins in the histogram. The dynamic noise constant was set 
+   to \(0.8\) of the size of the smaller dimension of the patch, and the number of particles 
+   was set to 100. Additionally, we used the Epanechnikov kernel on the patch before histogram 
+   extraction and employed the Hellinger distance to compute the similarity between histograms.
+    Furthermore, we ensured that particle positions were clipped if they were assigned a location
+     outside of the image.
+
 
 \begin{table}[h]
   \centering
@@ -122,26 +142,102 @@ $\alpha = 0.00001$, kernel size $\sigma = 1$, 16 bins in the histogram, the
   \end{table}
 
 \subsection{Testing using different motion models}
-We tested the tracker using all of the three aforementioned motion models. 
-For each of the models we tested various different dynamic noise constants(q). 
-We can see the number of failures as well as average overlap when using for 
-different parameters in Figure~\ref{fig:motion_models}. 
+We tested the tracker using all three of the aforementioned motion models. For each model,
+ we experimented with different values for the dynamic noise constant \(q\). Note that here \(q\) 
+ represents the ratio of the actual dynamics noise constant to the smaller
+   dimension of the patch.
+
+   The number of failures and average overlap for each motion model and different 
+   values of \(q\) are shown in Figure~\ref{fig:motion_models}. It is evident that 
+   the RW and NCV models significantly outperform
+    the NCA model, which struggles in both the number of
+     failures and average overlap. The RW and NCV both manage to reach around 30 failures and 
+     and average overlap at around 0.5.
+
+     We can see that for the RW and NCV models, a \( q \) value around 1 works best,
+      while for the NCA model, a smaller \( q \) is preferable (Note that while the average overlap 
+      is larger at larger q, that is the consequence of the tracker being reset more times). This is because assigning a 
+      large uncertainty to the RW and NCV models helps the tracker rely more on the measurements,
+       which is beneficial for these simpler motion models. In contrast, for the NCA model, a 
+       larger \( q \) increases the uncertainty in the acceleration, making the particle positions
+        more erratic. This leads to many particles being pushed outside the target area, resulting 
+        in a higher number of failures. Therefore, a smaller \( q \) is more effective in the NCA
+         model, as it reduces this unpredictability and keeps the particles within a more controlled
+          range. 
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.99\columnwidth]{figures/2.png}
-  \caption{}
+  \includegraphics[width=1.1\columnwidth]{figures/motion_models.png}
+  \caption{Tracker performance with different motion models and different dynamic noise constants}
   \label{fig:motion_models}
 \end{figure}
 
 \subsection{Testing the influence of number of particles}
+We also tested the dependence of performance on the number of particles (using the NCV 
+motion model).
+ In Figure~\ref{fig:particles}, we show the average overlap, total failures, 
+ and average speed as functions of the number of particles. We observe that with 
+ a small number of particles, the tracker's performance drops significantly. However,
+  after reaching approximately 30 to 50 particles, further increases in the number do
+   not result in significant improvements in performance. On the other hand, the average
+    speed decreases at a rate proportional to \(1 \times 10^{-1}\), as the computation time
+     increases linearly with the number of particles.
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.1\columnwidth]{figures/particles.png}
+  \caption{Tracker performance with different numbers of particles}
+  \label{fig:particles}
+\end{figure}
+
+\subsection{Testing different color spaces}
+Next, we tested the performance of the tracker using different color spaces 
+for creating the histograms (using the NCV 
+motion model). The results are shown in Table~\ref{tab:color_spaces}.
+ Note that the parameters were optimized for the BGR color space, so the results may be 
+ slightly biased.
+
+
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{l|c|c}
+
+  \textbf{Color Space} & \textbf{Average Overlap} & \textbf{Total Failures} \\
+  \hline
+  BGR    & 0.50 & 29.0 \\
+  RGB    & 0.50 & 29.0 \\
+  LAB    & 0.53 & 38.0 \\
+  HSV    & 0.53 & 38.0 \\
+  YCrCb  & 0.52 & 43.0 \\
+  \end{tabular}
+  \vspace{3pt}
+  \caption{Performance comparison of different color spaces using the particle filter tracker.}
+  \label{tab:color_spaces}
+  \end{table}
+  
+\section{Conclusion}
+We found that when using the Kalman filter, the dynamic noise constant should be lower for 
+the Random Walk (RW) motion model compared to the Nearly Constant Velocity (NCV) and Nearly
+ Constant Acceleration (NCA) models. This is because the RW model lacks flexibility and should
+  rely more on the measurements.
+
+The particle filter tracker performed well on the dataset. We observed that the RW and NCV models 
+significantly outperformed the NCA model. For the RW and NCV models, an optimal dynamic noise constant 
+\(q \approx 1\) was determined, while the NCA model performed better with \(q \approx 0.2\).
+
+We also found that increasing the number of particles improved the tracker's performance. However,
+ after approximately 40 particles, the improvements stagnated, while the computation speed continued 
+ to decrease.
+
+Furthermore, we determined that the BGR and RGB color spaces outperformed other color spaces in terms 
+of tracker performance.
 
 
 \clearpage
 \newpage
 \section{Appendix}
-Here we present the matrices derived for the motion models
+Here we present the matrices derived for the motion models.
 \subsection{Random walk}
 \[
 \mathbf{X} = \begin{bmatrix} x \\ y \end{bmatrix}, \quad
