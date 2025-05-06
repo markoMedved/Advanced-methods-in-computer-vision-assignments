@@ -1,0 +1,5 @@
+python run_tracker.py --dataset dataset --net siamfc_net.pth --results_dir results
+
+python show_tracking.py --dataset dataset --results_dir results_short_term --sequence car9
+
+python performance_evaluation.py --dataset dataset --results_dir results
