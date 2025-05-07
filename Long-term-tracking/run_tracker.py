@@ -54,6 +54,8 @@ def evaluate_tracker(dataset_path, network_path, results_dir, visualize):
                 if key_ == 27:
                     exit(0)
         
+        print(f"Average frames used for re-detection: {tracker.total_frame_counter / tracker.num_redetections if tracker.num_redetections != 0 else 0}")
+        
         save_results(results, bboxes_path)
         save_results(scores, scores_path)
 
@@ -67,4 +69,4 @@ parser.add_argument("--visualize", help="Show ground-truth annotations", require
 
 args = parser.parse_args()
 
-evaluate_tracker(args.dataset, args.net, args.results_dir, args.visualize, args.N, args.threshold)
+evaluate_tracker(args.dataset, args.net, args.results_dir, args.visualize)

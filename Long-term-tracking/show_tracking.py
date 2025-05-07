@@ -39,6 +39,8 @@ def visualize_results(dataset_path, results_dir, sequence_name):
         sequence.draw_text(img, 'Score: %.3f' % scores[i][0], (50, 50))
         sequence.draw_text(img, 'Overlap: %.2f' % overlaps[i], (50, 75))
 
+
+
         sequence.show_image(img, 10)
 
 

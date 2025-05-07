@@ -21,12 +21,7 @@ from .losses import BalancedLoss
 from .datasets import Pair
 from .transforms import SiamFCTransforms
 import random
-
-# TODO: check if you can avoid the 3, run the stuff on different tresholds(maybe also lower the N for this one)
-# Run for different N-s
-# visualize car9
-# Implement other sampling 
-
+ 
 __all__ = ['TrackerSiamFC']
 
 
@@ -156,15 +151,26 @@ class TrackerSiamFC(Tracker):
         z = torch.from_numpy(z).to(
             self.device).permute(2, 0, 1).unsqueeze(0).float()
         self.kernel = self.net.backbone(z)
-
-    
-
-
     ############################## NOTE: my changes ##############################
+        self.boxes = []
+        self.detection = False
+        self.frame_counter = 0
+        self.total_frame_counter = 0
+        self.last_confident = self.center
+        self.num_redetections = 0
+        self.sigma = 1
+
+
     def get_N_uniform_samples(self, height, width, N):
         x = np.random.uniform(0, width, N)
         y = np.random.uniform(0, height, N)
         return x, y
+    
+    def get_N_samples_from_gaussian_last_confident(self, height, width, N, position, sigma = 1):
+        x = np.random.normal(position[0], sigma, width, N)
+        y = np.random.normal(position[1], sigma, height, N)
+        return x,y
+    
 
     ############################## NOTE: end of my changes ##############################
 
@@ -212,40 +218,42 @@ class TrackerSiamFC(Tracker):
         #print(max_resp)
         # Detect the failure
         # NOTE: 2 PARAMS TO SET PROPERLY HERE
-        threshold = 4 
+        threshold = 5
         N = 50
-        # TODO visualize the correlation for report
         curr_max_resp = max_resp
         if max_resp < threshold:
+            self.frame_counter += 1
             # re-detect 
-            self.detector = True
+            self.detection = True
+
+            # Unifrom 
             X,Y = self.get_N_uniform_samples(img.shape[0], img.shape[1], N)
+            
+            # Gaussian with constant variance 
+            # X,Y = self.get_N_samples_from_gaussian_last_confident(img.shape[0], img.shape[1], N, self.last_confident)
+
+
+
+            self.boxes = []
             for i, (x_in, y_in) in enumerate(zip(X,Y)):
                 x = ops.crop_and_resize(
                     img,np.array( [x_in, y_in]), self.x_sz,
                     out_size=self.cfg.instance_sz,
                     border_value=self.avg_color) 
-                x = [x,x,x]
 
-                # TODO: maybe you dont have to have 3 of them(currently three the same (since no scale here))
-                x = np.stack(x, axis=0)
-                x = torch.from_numpy(x).to(
-                    self.device).permute(0, 3, 1, 2).float()
+                x = torch.from_numpy(x).to(self.device).permute(2, 0, 1).unsqueeze(0).float()
 
                 x = self.net.backbone(x)
-                responses = self.net.head(self.kernel, x)
-                responses = responses.squeeze(1).cpu().numpy()
+                response = self.net.head(self.kernel, x)
 
- 
-                responses = np.stack([cv2.resize(
-                    u, (self.upscale_sz, self.upscale_sz),
-                    interpolation=cv2.INTER_CUBIC)
-                    for u in responses])
- 
-                scale_id = 0
 
+                response = response.squeeze(0).squeeze(0).cpu().numpy()
+                response = cv2.resize(
+                    response, (self.upscale_sz, self.upscale_sz),
+                    interpolation=cv2.INTER_CUBIC
+                )
+ 
                 # peak location
-                response = responses[scale_id]
                 max_resp = max(0, response.max())
                 response -= response.min()
                 response /= response.sum() + 1e-16
@@ -253,19 +261,77 @@ class TrackerSiamFC(Tracker):
                     self.cfg.window_influence * self.hann_window
                 loc = np.unravel_index(response.argmax(), response.shape)
 
+                self.boxes.append(np.array([
+                y_in + 1 - (self.target_sz[1] - 1) / 2,
+                x_in + 1 - (self.target_sz[0] - 1) / 2,
+                self.target_sz[1], self.target_sz[0]]))
+
                 if max_resp > curr_max_resp:
-                    print(f"max resp: {max_resp}")
+                    #print(f"max resp: {max_resp}")
                     curr_max_resp = max_resp
                     self.center = np.array([x_in, y_in])
 
-                    if curr_max_resp > threshold: break # break if higher
+                    #if curr_max_resp > threshold: break # break if higher
+
 
             box = np.array([
                 self.center[1] + 1 - (self.target_sz[1] - 1) / 2,
                 self.center[0] + 1 - (self.target_sz[0] - 1) / 2,
                 self.target_sz[1], self.target_sz[0]])
             
+
+
+            x1,y1 = int(box[0]), int(box[1])
+            x2, y2 = int(box[0]  + self.target_sz[1]), int(box[1] + self.target_sz[0])
+            cv2.rectangle(img, (x1,y1), (x2,y2), (0,255,255), 2)
+
+            for box in self.boxes:
+
+                x1,y1 = int(box[0]), int(box[1])
+                x2, y2 = int(box[0]  + self.target_sz[1]), int(box[1] + self.target_sz[0])
+                cv2.rectangle(img, (x1,y1), (x2,y2), (255,0,0), 1)
+
+            cv2.imshow("Result", img)
+            key = cv2.waitKey(0)
+            if key == ord('s'):  
+                cv2.imwrite("saved_frame.png", img)
+            cv2.destroyAllWindows()
+            
             return box, curr_max_resp
+        
+        elif self.detection:
+            print("re-detected")
+            # IF detection was discountinued still plot
+            #self.detection = False
+            #print(f"It took: {self.frame_counter} frames to re-detect")
+            self.total_frame_counter += self.frame_counter
+            self.num_redetections += 1
+            self.frame_counter = 0
+            box = np.array([
+                self.center[1] + 1 - (self.target_sz[1] - 1) / 2,
+                self.center[0] + 1 - (self.target_sz[0] - 1) / 2,
+                self.target_sz[1], self.target_sz[0]])
+            
+
+            #cv2.imshow(img)
+            #print(box[0])
+            x1,y1 = int(box[0]), int(box[1])
+            x2, y2 = int(box[0]  + self.target_sz[1]), int(box[1] + self.target_sz[0])
+            cv2.rectangle(img, (x1,y1), (x2,y2), (0,255,255), 2)
+
+            for box in self.boxes:
+                #print(box[0])
+                x1,y1 = int(box[0]), int(box[1])
+                x2, y2 = int(box[0]  + self.target_sz[1]), int(box[1] + self.target_sz[0])
+                cv2.rectangle(img, (x1,y1), (x2,y2), (255,0,0), 1)
+
+            cv2.imshow("Result", img)
+            key = cv2.waitKey(0)
+            if key == ord('s'):  
+                cv2.imwrite("saved_frame.png", img)
+            cv2.destroyAllWindows()
+
+            
 
         ############################## NOTE: end of my changes ##############################
 
@@ -277,6 +343,11 @@ class TrackerSiamFC(Tracker):
             self.scale_factors[scale_id] / self.cfg.instance_sz
         self.center += disp_in_image
 
+        ############################## NOTE: my changes ##############################
+
+        self.last_confident = self.center
+
+        ############################## NOTE: end of my changes ##############################
         # update target size
         scale =  (1 - self.cfg.scale_lr) * 1.0 + \
             self.cfg.scale_lr * self.scale_factors[scale_id]

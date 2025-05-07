@@ -1,0 +1,144 @@
+\documentclass[9pt]{IEEEtran}
+
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{array}
+\usepackage{textcomp}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage{gensymb}
+\usepackage{longtable}
+\usepackage{supertabular}
+\usepackage{multicol}
+
+\usepackage[utf8x]{inputenc}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}{}
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\graphicspath{{./figures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor trig-gs}
+
+% ============================================================================================
+
+\title{\vspace{0ex}
+Correlation ﬁlter tracking}
+
+\author{Marko Medved\vspace{-4.0ex}}
+
+% ============================================================================================
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+In this assignment, the short-term 
+SiamFC tracker was adapted into a 
+long-term tracking framework by using 
+the peak value of the correlation 
+response as an indicator of target presence. Various thresholds were tested to determine the optimal value for detecting target disappearance. The impact of the number of sampled regions on the tracker’s re-detection performance was also evaluated. Cases where the tracker successfully re-detected the target were identified and visualized. For the re-detection mechanism, uniform sampling across the entire image was initially employed, followed by an evaluation of Gaussian sampling centered around the last confident target position.
+
+
+\section{Experiments}
+\subsection{Short-term vs long-term tracker performance}
+In the first part of the evaluation, we began by testing the short-term
+ implementation of the SiamFC tracker and then compared it to a modified
+  long-term version. Both trackers were evaluated on all sequences in 
+  the provided dataset. The long-term modification builds on the 
+  short-term tracker by introducing a thresholding mechanism based 
+  on the correlation response. When the peak response falls below a
+   predefined threshold, a re-detection step is triggered. This step
+   samples 50 candidate positions uniformly across the entire image 
+   and selects the one with the highest correlation response. The 
+   re-detection process remains active until a response exceeding 
+   the threshold value of 4 is found. \\
+   The comparison of the trackers is presented in
+    Table~\ref{tab:short_vs_long}. While the precision of 
+    the long-term variant decreased slightly—possibly due to
+     re-detection being unnecessarily triggered in some frames 
+     where the target was still present, leading to suboptimal 
+     localization—the recall and, consequently, the F-score improved
+      significantly. This improvement is expected, as the short-term
+       tracker typically fails to recover once the target leaves the
+        field of view, whereas the long-term extension is able to
+         re-detect and continue tracking.  
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{l|c|c|c}
+
+  \textbf{Tracker} & \textbf{Precision} & \textbf{Recall} & \textbf{F-score} \\
+  \hline
+  Short-term & 0.5982 & 0.3251 & 0.4212 \\
+  Long-term  & 0.5870 & 0.4501 & 0.5095 \\
+
+  \end{tabular}
+  \vspace{2pt}
+  \caption{Performance of short-term and long-term tracking.}
+  \label{tab:short_vs_long}
+  \end{table}
+
+  \subsection{Searching for the optimal value of confidence threshold}
+  As previously mentioned, the maximum value of the correlation 
+  response was used as a confidence score. In the initial experiments, 
+  the threshold was set to 4 based on empirical observations: the
+   correlation peak typically dropped from values around 6–9 to 
+   approximately 2–3 when the target was lost. The chosen 
+   threshold thus fell midway between these ranges. In this 
+   section, we systematically evaluate a range of thresholds 
+   around this preliminary value to identify the most effective setting.
+  
+  On Figure~\ref{fig:thresholds} we can observe the results at different 
+  thresholds. We can see that the best overall F-score is achieved with the 
+  thresholds set to 4 or 5. For further evaluations we opt for 4 since this way 
+  we have less unnecesary re-detections. We can see that the precision actually keeps 
+  growing with a higher threshold, however the recall plummets.
+
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.99\columnwidth]{figures/thresholds.png}
+    \caption{Comparison of performance at different thresholds}
+    \label{fig:thresholds}
+\end{figure}
+
+\subsection{Testing different number of randomly sampled regions}
+Next we tested how the number of regions sampled during 
+re-detection affects re-detection capability. 
+
+
+\subsection{Visualization}
+Here we present the visualizations of re-identifications of targets using our tracker. 
+
+
+
+\subsection{Different sampling methods}
+We also tried using the gaussian sampling method, around the last confidently 
+tracked point (before the correlation output was below the threshold). 
+
+  
+
+\section{Conclusion}
+
+
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{bibliography}
+
+\end{document}
