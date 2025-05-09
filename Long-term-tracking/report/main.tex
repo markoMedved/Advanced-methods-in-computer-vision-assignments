@@ -57,7 +57,7 @@ response as an indicator of target presence. Various thresholds were tested to d
 \section{Experiments}
 \subsection{Short-term vs long-term tracker performance}
 In the first part of the evaluation, we began by testing the short-term
- implementation of the SiamFC tracker and then compared it to a modified
+ implementation of the SiamFC tracker and then compared it to the modified
   long-term version. Both trackers were evaluated on all sequences in 
   the provided dataset. The long-term modification builds on the 
   short-term tracker by introducing a thresholding mechanism based 
@@ -85,7 +85,7 @@ In the first part of the evaluation, we began by testing the short-term
   \textbf{Tracker} & \textbf{Precision} & \textbf{Recall} & \textbf{F-score} \\
   \hline
   Short-term & 0.5982 & 0.3251 & 0.4212 \\
-  Long-term  & 0.5870 & 0.4501 & 0.5095 \\
+  Long-term  & 0.5817 & 0.4524 & 0.5090 \\
 
   \end{tabular}
   \vspace{2pt}
@@ -96,7 +96,7 @@ In the first part of the evaluation, we began by testing the short-term
   \subsection{Searching for the optimal value of confidence threshold}
   As previously mentioned, the maximum value of the correlation 
   response was used as a confidence score. In the initial experiments, 
-  the threshold was set to 4 based on empirical observations: the
+  the threshold was set to 4 based on observations: the
    correlation peak typically dropped from values around 6–9 to 
    approximately 2–3 when the target was lost. The chosen 
    threshold thus fell midway between these ranges. In this 
@@ -105,7 +105,8 @@ In the first part of the evaluation, we began by testing the short-term
   
   On Figure~\ref{fig:thresholds} we can observe the results at different 
   thresholds. We can see that the best overall F-score is achieved with the 
-  thresholds set to 4 or 5. For further evaluations we opt for 4 since this way 
+  thresholds set to 4 or 5. For further evaluations we opt for 4 since it has the highest 
+  F-score and this way 
   we have less unnecesary re-detections. We can see that the precision actually keeps 
   growing with a higher threshold, however the recall plummets.
 
@@ -118,23 +119,73 @@ In the first part of the evaluation, we began by testing the short-term
 \end{figure}
 
 \subsection{Testing different number of randomly sampled regions}
-Next we tested how the number of regions sampled during 
-re-detection affects re-detection capability. 
+Next, we examined how the number of sampled regions during re-detection impacts 
+the tracker's performance. For each sequence, we recorded the total number of frames
+ required for successful re-detection, then averaged these values across all sequences.
+  The results are presented in Figure~\ref{fig:samp}. Interestingly, the number of frames required 
+  for re-detection does not consistently decrease as the number of sampled regions increases, which 
+  would be expected if the tracker functioned perfectly. This may be due to the fact that sampling 
+  more regions increases the likelihood of false positives, which can mislead the tracker and 
+  ultimately delay successful re-detection.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.99\columnwidth]{figures/diff_N.png}
+  \caption{Average number of re-detection frames for different numbers of sample points}
+  \label{fig:samp}
+\end{figure}
+
 
 
 \subsection{Visualization}
-Here we present the visualizations of re-identifications of targets using our tracker. 
+Here we present a visualization of the target re-detection process using our tracker, shown in Figure~\ref{fig:vis}. 
+In the first image, the target is occluded by a traffic billboard, leading the tracker to lose the target and instead assign the position to a visually similar patch. 
+In the second image, as the car reappears from behind the obstruction, our re-detection mechanism successfully re-identifies and tracks it.
 
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.99\columnwidth]{figures/vis.png}
+    \caption{Example of the long term tracker re-detection}
+    \label{fig:vis}
+\end{figure}
 
 
 \subsection{Different sampling methods}
 We also tried using the gaussian sampling method, around the last confidently 
-tracked point (before the correlation output was below the threshold). 
+tracked point (before the correlation output was below the threshold). For this method we used 
+a standard deviation of $1/10$ of the height of the image.  The results 
+(Table~\ref{tab:sampling_strategies}) show a slight improvement 
+in precision but a small drop in recall, with the overall F-score remaining nearly the same. This
+ trade-off can be attributed to the localized nature of Gaussian sampling: the tracker becomes more 
+ focused on regions near the last known location, which helps avoid false positives from distant, 
+ similar-looking regions—hence the improved precision. However when the target re-appears on a completly
+  different part of 
+the image, the tracker with gaussian sampling is more likely to miss it, leading to reduced recall.
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{l|c|c|c}
+  \textbf{Sampling Strategy} & \textbf{Precision} & \textbf{Recall} & \textbf{F-score} \\
+  \hline
+  Uniform  & 0.5817 & 0.4525 & 0.5090 \\
+  Gaussian & 0.5971 & 0.4430 & 0.5087 \\
+  \end{tabular}
+  \vspace{2pt}
+  \caption{Performance comparison between uniform and Gaussian sampling strategies.}
+  \label{tab:sampling_strategies}
+\end{table}
 
   
 
 \section{Conclusion}
-
+In this assignment we successfully modified a short-term tracker to long-term tracker and significantly
+improved the performance on long-term sequences. We showed that for our implementation of 
+re-detection with correlation response peaks, the optimal threshold was 4. We found out that the number 
+of sampled points does not necesarily mean a faster re-detection. We showed examples 
+of successfull re-detection. Lastly we tried 2 different sampling strategies: uniform accross the entire 
+frame and gaussian around the last successfully tracked point with a constant standard deviation. 
+We found out that both methods perform similarly. 
 
 
 

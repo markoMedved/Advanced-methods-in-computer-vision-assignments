@@ -166,10 +166,10 @@ class TrackerSiamFC(Tracker):
         y = np.random.uniform(0, height, N)
         return x, y
     
-    def get_N_samples_from_gaussian_last_confident(self, height, width, N, position, sigma = 1):
-        x = np.random.normal(position[0], sigma, width, N)
-        y = np.random.normal(position[1], sigma, height, N)
-        return x,y
+    def get_N_samples_from_gaussian_last_confident(self, height, width, N, position, sigma=1):
+        x = np.clip(np.random.normal(position[0], sigma, N), 0, width - 1)
+        y = np.clip(np.random.normal(position[1], sigma, N), 0, height - 1)
+        return x, y
     
 
     ############################## NOTE: end of my changes ##############################
@@ -187,7 +187,6 @@ class TrackerSiamFC(Tracker):
         x = np.stack(x, axis=0)
         x = torch.from_numpy(x).to(
             self.device).permute(0, 3, 1, 2).float()
-        # print(x.shape)
         
         # responses
         x = self.net.backbone(x)
@@ -215,27 +214,28 @@ class TrackerSiamFC(Tracker):
         loc = np.unravel_index(response.argmax(), response.shape)
 
         ############################## NOTE: my changes ##############################
-        #print(max_resp)
-        # Detect the failure
-        # NOTE: 2 PARAMS TO SET PROPERLY HERE
-        threshold = 5
+        # NOTE: 2 PARAMS TO SET HERE
+        threshold = 4
         N = 50
+
+        # Detect the failure
         curr_max_resp = max_resp
         if max_resp < threshold:
             self.frame_counter += 1
             # re-detect 
             self.detection = True
 
-            # Unifrom 
+            # Uniform sampling
             X,Y = self.get_N_uniform_samples(img.shape[0], img.shape[1], N)
-            
+
             # Gaussian with constant variance 
-            # X,Y = self.get_N_samples_from_gaussian_last_confident(img.shape[0], img.shape[1], N, self.last_confident)
-
-
+            # X,Y = self.get_N_samples_from_gaussian_last_confident(img.shape[0],
+            #                                                        img.shape[1], N,
+            #                                                          self.last_confident,
+            #                                                          sigma=img.shape[0] / 10)
 
             self.boxes = []
-            for i, (x_in, y_in) in enumerate(zip(X,Y)):
+            for i, (y_in, x_in) in enumerate(zip(X,Y)):
                 x = ops.crop_and_resize(
                     img,np.array( [x_in, y_in]), self.x_sz,
                     out_size=self.cfg.instance_sz,
@@ -280,30 +280,31 @@ class TrackerSiamFC(Tracker):
                 self.target_sz[1], self.target_sz[0]])
             
 
+            # NOTE : commented out the plots 
+            # x1,y1 = int(box[0]), int(box[1])
+            # x2, y2 = int(box[0]  + self.target_sz[1]), int(box[1] + self.target_sz[0])
+            # cv2.rectangle(img, (x1,y1), (x2,y2), (0,255,255), 2)
 
-            x1,y1 = int(box[0]), int(box[1])
-            x2, y2 = int(box[0]  + self.target_sz[1]), int(box[1] + self.target_sz[0])
-            cv2.rectangle(img, (x1,y1), (x2,y2), (0,255,255), 2)
+            # for box in self.boxes:
 
-            for box in self.boxes:
+            #     x1,y1 = int(box[0]), int(box[1])
+            #     x2, y2 = int(box[0]  + self.target_sz[1]), int(box[1] + self.target_sz[0])
+            #     cv2.rectangle(img, (x1,y1), (x2,y2), (255,0,0), 1)
 
-                x1,y1 = int(box[0]), int(box[1])
-                x2, y2 = int(box[0]  + self.target_sz[1]), int(box[1] + self.target_sz[0])
-                cv2.rectangle(img, (x1,y1), (x2,y2), (255,0,0), 1)
-
-            cv2.imshow("Result", img)
-            key = cv2.waitKey(0)
-            if key == ord('s'):  
-                cv2.imwrite("saved_frame.png", img)
-            cv2.destroyAllWindows()
+            # cv2.imshow("Result", img)
+            # key = cv2.waitKey(0)
+            # if key == ord('s'):  
+            #     cv2.imwrite("saved_frame.png", img)
+            # cv2.destroyAllWindows()
             
             return box, curr_max_resp
         
+
         elif self.detection:
-            print("re-detected")
-            # IF detection was discountinued still plot
-            #self.detection = False
+            # print("re-detected")    
+            self.detection = False
             #print(f"It took: {self.frame_counter} frames to re-detect")
+        
             self.total_frame_counter += self.frame_counter
             self.num_redetections += 1
             self.frame_counter = 0
@@ -312,24 +313,24 @@ class TrackerSiamFC(Tracker):
                 self.center[0] + 1 - (self.target_sz[0] - 1) / 2,
                 self.target_sz[1], self.target_sz[0]])
             
+        # NOTE : commented out the plots 
+        #     #cv2.imshow(img)
+        #     #print(box[0])
+        #     x1,y1 = int(box[0]), int(box[1])
+        #     x2, y2 = int(box[0]  + self.target_sz[1]), int(box[1] + self.target_sz[0])
+        #     cv2.rectangle(img, (x1,y1), (x2,y2), (0,255,255), 2)
 
-            #cv2.imshow(img)
-            #print(box[0])
-            x1,y1 = int(box[0]), int(box[1])
-            x2, y2 = int(box[0]  + self.target_sz[1]), int(box[1] + self.target_sz[0])
-            cv2.rectangle(img, (x1,y1), (x2,y2), (0,255,255), 2)
+        #     for box in self.boxes:
+        #         #print(box[0])
+        #         x1,y1 = int(box[0]), int(box[1])
+        #         x2, y2 = int(box[0]  + self.target_sz[1]), int(box[1] + self.target_sz[0])
+        #         cv2.rectangle(img, (x1,y1), (x2,y2), (255,0,0), 1)
 
-            for box in self.boxes:
-                #print(box[0])
-                x1,y1 = int(box[0]), int(box[1])
-                x2, y2 = int(box[0]  + self.target_sz[1]), int(box[1] + self.target_sz[0])
-                cv2.rectangle(img, (x1,y1), (x2,y2), (255,0,0), 1)
-
-            cv2.imshow("Result", img)
-            key = cv2.waitKey(0)
-            if key == ord('s'):  
-                cv2.imwrite("saved_frame.png", img)
-            cv2.destroyAllWindows()
+        #     cv2.imshow("Result", img)
+        #     key = cv2.waitKey(0)
+        #     if key == ord('s'):  
+        #         cv2.imwrite("saved_frame.png", img)
+        #     cv2.destroyAllWindows()
 
             
 
@@ -344,7 +345,8 @@ class TrackerSiamFC(Tracker):
         self.center += disp_in_image
 
         ############################## NOTE: my changes ##############################
-
+        
+        # Set the last confident here
         self.last_confident = self.center
 
         ############################## NOTE: end of my changes ##############################

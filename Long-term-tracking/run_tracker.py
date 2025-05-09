@@ -54,7 +54,7 @@ def evaluate_tracker(dataset_path, network_path, results_dir, visualize):
                 if key_ == 27:
                     exit(0)
         
-        print(f"Average frames used for re-detection: {tracker.total_frame_counter / tracker.num_redetections if tracker.num_redetections != 0 else 0}")
+        print(f"Total frames used for re-detections: {tracker.total_frame_counter}")# / tracker.num_redetections if tracker.num_redetections != 0 else 0}")
         
         save_results(results, bboxes_path)
         save_results(scores, scores_path)

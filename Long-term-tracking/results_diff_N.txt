@@ -1,79 +1,96 @@
 N = 10
 Processing sequence: car9
-Average frames used for re-detection: 2.75
+Total frames used for re-detections: 12
 Processing sequence: cat1
-Average frames used for re-detection: 9.64516129032258
+Total frames used for re-detections: 191
 Processing sequence: deer
-Average frames used for re-detection: 52.09090909090909
+Total frames used for re-detections: 492
 Processing sequence: dog
-Average frames used for re-detection: 3.557142857142857
+Total frames used for re-detections: 365
 Processing sequence: person14
-Average frames used for re-detection: 9.666666666666666
-Processing sequence: dog
-Average frames used for re-detection: 3.557142857142857
-Processing sequence: person14
-Processing sequence: dog
-Average frames used for re-detection: 3.557142857142857
-Processing sequence: dog
-Average frames used for re-detection: 3.557142857142857
-Processing sequence: dog
-Average frames used for re-detection: 3.557142857142857
-Processing sequence: dog
-Average frames used for re-detection: 3.557142857142857
-Processing sequence: person14
-Processing sequence: dog
-Average frames used for re-detection: 3.557142857142857
-Processing sequence: person14
-Average frames used for re-detection: 3.557142857142857
-Processing sequence: person14
-Processing sequence: person14
-Average frames used for re-detection: 9.666666666666666
-Average frames used for re-detection: 9.666666666666666
+Total frames used for re-detections: 14
 Processing sequence: person20
-Average frames used for re-detection: 0
+Total frames used for re-detections: 0
 Processing sequence: sitcom
-Average frames used for re-detection: 3.3793103448275863
+Total frames used for re-detections: 21
 Processing sequence: skiing
-Average frames used for re-detection: 5.7727272727272725
+Total frames used for re-detections: 432
 Processing sequence: sup
-Average frames used for re-detection: 35.81818181818182
+Total frames used for re-detections: 365
+
 N = 20
 Processing sequence: car9
-Average frames used for re-detection: 2.0
+Total frames used for re-detections: 19
 Processing sequence: cat1
-Average frames used for re-detection: 12.619047619047619
+Total frames used for re-detections: 185
 Processing sequence: deer
-Average frames used for re-detection: 40.642857142857146
+Total frames used for re-detections: 495
 Processing sequence: dog
-Average frames used for re-detection: 4.176056338028169
+Total frames used for re-detections: 515
 Processing sequence: person14
-Average frames used for re-detection: 2.3333333333333335
+Total frames used for re-detections: 7
 Processing sequence: person20
-Average frames used for re-detection: 0
+Total frames used for re-detections: 0
 Processing sequence: sitcom
-Average frames used for re-detection: 1.5161290322580645
+Total frames used for re-detections: 22
 Processing sequence: skiing
-Average frames used for re-detection: 4.808080808080808
+Total frames used for re-detections: 413
 Processing sequence: sup
-Average frames used for re-detection: 31.46153846153846
+Total frames used for re-detections: 347
+
 N = 30
-Processing sequence: car9
-Average frames used for re-detection: 1.8333333333333333
+Total frames used for re-detections: 17
 Processing sequence: cat1
-Average frames used for re-detection: 9.3
+Total frames used for re-detections: 186
 Processing sequence: deer
-Average frames used for re-detection: 46.63636363636363
+Total frames used for re-detections: 352
 Processing sequence: dog
-Average frames used for re-detection: 3.0476190476190474
+Total frames used for re-detections: 322
 Processing sequence: person14
-Average frames used for re-detection: 2.2
+Total frames used for re-detections: 4
 Processing sequence: person20
-Average frames used for re-detection: 0
+Total frames used for re-detections: 0
 Processing sequence: sitcom
-Average frames used for re-detection: 1.676923076923077
+Total frames used for re-detections: 16
 Processing sequence: skiing
-Average frames used for re-detection: 4.43298969072165
+Total frames used for re-detections: 362
 Processing sequence: sup
-Average frames used for re-detection: 25.125
+Total frames used for re-detections: 239
 N = 40
+Processing sequence: car9
+Total frames used for re-detections: 13
+Processing sequence: cat1
+Total frames used for re-detections: 126
+Processing sequence: deer
+Total frames used for re-detections: 487
+Processing sequence: dog
+Total frames used for re-detections: 246
+Processing sequence: person14
+Total frames used for re-detections: 3
+Processing sequence: person20
+Total frames used for re-detections: 0
+Processing sequence: sitcom
+Total frames used for re-detections: 19
+Processing sequence: skiing
+Total frames used for re-detections: 365
+Processing sequence: sup
+Total frames used for re-detections: 329
 N = 50
+Processing sequence: car9
+Total frames used for re-detections: 16
+Processing sequence: cat1
+Total frames used for re-detections: 179
+Processing sequence: deer
+Total frames used for re-detections: 504
+Processing sequence: dog
+Total frames used for re-detections: 256
+Processing sequence: person14
+Total frames used for re-detections: 5
+Processing sequence: person20
+Total frames used for re-detections: 0
+Processing sequence: sitcom
+Total frames used for re-detections: 18
+Processing sequence: skiing
+Total frames used for re-detections: 384
+Processing sequence: sup
+Total frames used for re-detections: 342
