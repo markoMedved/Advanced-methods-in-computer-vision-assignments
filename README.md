@@ -1,2 +1,7 @@
 # Advanced-methods-in-computer-vision-assignments
-This repository contains all my implementations for the Advanced methods in computer vision course
+## Implementations:
+- `Correlation Filter tracker`
+- `Mean-Shift tracker`
+- `Lukas-Kanade and Horn-Schunk optical flow`
+- `Long-term tracking modification for a deep tracker`
+- `Bayesian particle filter tracker`

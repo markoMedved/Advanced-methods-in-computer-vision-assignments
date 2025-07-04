@@ -1,5 +1,5 @@
 # Fdb version 4
-["bibtex main"] 0 "main.aux" "main.bbl" "main" 1743799674.49606 0
+["bibtex main"] 0 "main.aux" "main.bbl" "main" 1743800265.96038 0
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/bibtex/bst/ieeetran/IEEEtran.bst" 1440622569 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
   "bibliography.bib" 0 -1 0 ""
   "main.aux" 0 -1 0 "pdflatex"
@@ -7,7 +7,7 @@
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1743799672.39415 "c:/Users/marko/Desktop/Computer_vision/Advanced-methods-in-computer-vision-assignments/Correlation-filter-tracking/report/main.tex" "main.pdf" "main" 1743799674.49676 0
+["pdflatex"] 1743800263.89929 "c:/Users/marko/Desktop/Computer_vision/Advanced-methods-in-computer-vision-assignments/Correlation-filter-tracking/report/main.tex" "main.pdf" "main" 1743800265.9612 0
   "C:/Users/marko/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1742578751 82507 a9eef8696c92627b87e9975edea03b2a ""
   "C:/Users/marko/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1741285665 24225045 9df87bb9afcf68668f63d57d7a3d7d4c ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc" 1256929440 2375 baa924870cfb487815765f9094cf3728 ""
@@ -165,16 +165,16 @@
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/tex/latex/ucs/utf8x.def" 1700127473 8944 e3433baec74c4b7b278c6b6a547ff9ec ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/marko/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
-  "c:/Users/marko/Desktop/Computer_vision/Advanced-methods-in-computer-vision-assignments/Correlation-filter-tracking/report/main.tex" 1743799671 9714 f071a97319d4baac72a2cae545d91adb ""
+  "c:/Users/marko/Desktop/Computer_vision/Advanced-methods-in-computer-vision-assignments/Correlation-filter-tracking/report/main.tex" 1743800263 9714 09043cec4b8a7ad19649136024d0b8e6 ""
   "figures/average_track_speed.png" 1743794756 96230 71273377c4711bdd9119b4a835329fc1 ""
   "figures/tracking_alpha.png" 1743787299 78121 27bca27b8ff680253c7355aa5b389099 ""
   "figures/tracking_enlargement.png" 1743766657 72760 98562c597ca8316449f1a0aa495cf749 ""
   "figures/tracking_sigma.png" 1743765257 67275 ee41d45916bdb9c0f2efc662865f6a3b ""
   "figures/tracking_speed.png" 1743794734 89624 b017ae837bfc5f249d2f54f6ea279a27 ""
-  "main.aux" 1743799673 3527 b04b2e11486d3b76313ffc9f1ec24cbb "pdflatex"
+  "main.aux" 1743800265 3527 b04b2e11486d3b76313ffc9f1ec24cbb "pdflatex"
   "main.bbl" 0 -1 0 "bibtex main"
-  "main.out" 1743799673 1209 8fbcc83f0e0731ed64f174c98acba1e0 "pdflatex"
-  "main.tex" 1743799671 9714 f071a97319d4baac72a2cae545d91adb ""
+  "main.out" 1743800265 1209 8fbcc83f0e0731ed64f174c98acba1e0 "pdflatex"
+  "main.tex" 1743800263 9714 09043cec4b8a7ad19649136024d0b8e6 ""
   (generated)
   "main.aux"
   "main.log"
